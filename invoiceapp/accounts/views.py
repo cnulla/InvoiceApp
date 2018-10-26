@@ -23,6 +23,7 @@ class SignUpView(TemplateView):
         form = SignUpForm(self.request.POST)
 
         if form.is_valid():
+            import pdb; pdb.set_trace()
             try:
                 first_name = self.request.POST['first_name']
                 last_name = self.request.POST['last_name']

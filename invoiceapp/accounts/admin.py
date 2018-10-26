@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from accounts.models import MyUser
+from accounts.models import MyUser, TokenGenerator
 # Register your models here.
 
 class UserAdmin(BaseUserAdmin):
