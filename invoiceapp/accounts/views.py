@@ -12,6 +12,8 @@ from accounts.forms import SignUpForm
 # Create your views here.
 
 class SignUpView(TemplateView):
+    """ User Sign Up/Registration
+    """
     template_name = 'accounts/signup.html'
 
     def get(self, *args, **kwargs):
@@ -28,7 +30,7 @@ class SignUpView(TemplateView):
                 first_name = self.request.POST['first_name']
                 last_name = self.request.POST['last_name']
                 email = self.request.POST['email']
-                form.save()
+                user = form.save()
                 token = user.generate_token()
                 url = self.request.build_absolute_uri(reverse('verify_token', args=(token.token)))
                 html_content = render_to_string('accounts/confirm_email.html', {'url': url, 'full_name': first_name+" "+last_name, 'email': email})
@@ -46,5 +48,10 @@ class SignUpView(TemplateView):
         return render(self.request, self.template_name,{'form': form})
 
 
+
+
+
 class VerifyEmailView(TemplateView):
+    """ Display instructions on verifying the email
+    """
     template_name = 'accounts/verify_email.html'
