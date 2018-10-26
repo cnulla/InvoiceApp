@@ -24,7 +24,6 @@ class SignUpView(TemplateView):
 
     def post(self, *args, **kwargs):
         form = SignUpForm(self.request.POST)
-
         if form.is_valid():
             # import pdb; pdb.set_trace()
             try:
@@ -36,7 +35,7 @@ class SignUpView(TemplateView):
                 url = self.request.build_absolute_uri(reverse('verify-token', args=(token.token,)))
                 html_content = render_to_string('accounts/confirm_email.html', {'url': url, 'full_name': first_name+" "+last_name, 'email': email})
                 subject, from_email, to = 'InvoiceApp Verification Email', settings.EMAIL_HOST_USER, [email]
-                text_content = 'yes'
+                text_content = 'Verify Email'
                 msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
                 msg.attach_alternative(html_content, 'text/html')
                 msg.send()
