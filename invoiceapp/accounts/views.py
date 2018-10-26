@@ -32,7 +32,7 @@ class SignUpView(TemplateView):
                 email = self.request.POST['email']
                 user = form.save()
                 token = user.generate_token()
-                url = self.request.build_absolute_uri(reverse('verify_token', args=(token.token)))
+                url = self.request.build_absolute_uri(reverse('verify-token', args=(token.token)))
                 html_content = render_to_string('accounts/confirm_email.html', {'url': url, 'full_name': first_name+" "+last_name, 'email': email})
                 subject, from_email, to = 'InvoiceApp Verification Email', settings.EMAIL_HOST_USER, [email]
                 text_content = 'yes'

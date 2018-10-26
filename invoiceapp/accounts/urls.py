@@ -8,6 +8,6 @@ from accounts.views import (
 urlpatterns = [
         path('signup/', SignUpView.as_view(), name='signup'),
         path('verify-email', VerifyEmailView.as_view(), name='verify-email'),
-        path('verify-token/<str:token>', VerifyTokenView.as_view(), name='verify-token'),
+        path('verify-token/<str:token>/', VerifyTokenView.as_view(), name='verify-token'),
 
 ]
