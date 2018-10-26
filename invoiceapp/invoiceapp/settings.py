@@ -70,6 +70,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'invoiceapp.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
