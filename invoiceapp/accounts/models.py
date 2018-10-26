@@ -41,6 +41,8 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
+    """ Customizing UserAuthentication
+    """
     email = models.EmailField(verbose_name='email_address', max_length=255,unique=True,)
     first_name = models.CharField(verbose_name='first name',max_length=30,blank=True)
     last_name = models.CharField(verbose_name='last name',max_length=30,blank=True)
