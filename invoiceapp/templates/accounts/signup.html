@@ -14,28 +14,28 @@
             <div class="form-group row">
                 {% csrf_token %}
                 <label for="{{form.first_name.id_for_label}}"> First Name </label>
-                {{form.first_name}}
-                <div class="red">{{form.first_name.errors}}</div>
+                    {{form.first_name}}
+                        <div class="red">{{form.first_name.errors}}</div>
             </div>
             <div class="form-group row">
                 <label for="{{form.last_name.id_for_label}}"> Last Name </label>
-                {{form.last_name}}
-               <div class="red">{{form.last_name.errors}}</div>
+                    {{form.last_name}}
+                        <div class="red">{{form.last_name.errors}}</div>
             </div>
             <div class="form-group row">
                 <label for="{{form.email.id_for_label}}"> Email </label>
-                {{form.email}}
-               <div class="red">{{form.email.errors}}</div>
+                    {{form.email}}
+                        <div class="red">{{form.email.errors}}</div>
             </div>
             <div class="form-group row">
                 <label for="{{form.password.id_for_label}}"> Password </label>
-                {{form.password}}
-               <div class="red">{{form.password.errors}}</div>
+                    {{form.password}}
+                        <div class="red">{{form.password.errors}}</div>
             </div>
             <div class="form-group row">
                 <label for="{{form.confirm_password.id_for_label}}"> First Name </label>
-                {{form.confirm_password}}
-               <div class="red">{{form.confirm_password.errors}}</div>
+                    {{form.confirm_password}}
+                        <div class="red">{{form.confirm_password.errors}}</div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
