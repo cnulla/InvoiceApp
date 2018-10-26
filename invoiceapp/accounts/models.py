@@ -45,12 +45,14 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(verbose_name='first name',max_length=30,blank=True)
     last_name = models.CharField(verbose_name='last name',max_length=30,blank=True)
 
+    is_confirmed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=True)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
+
 
     def __str__(self):
         return self.email
