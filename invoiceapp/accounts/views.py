@@ -71,4 +71,3 @@ class VerifyEmailView(TemplateView):
     """ Display instructions on verifying the email
     """
     template_name = 'accounts/verify_email.html'
-    return
