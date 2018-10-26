@@ -25,7 +25,11 @@ class SignUpView(TemplateView):
     def post(self, *args, **kwargs):
         form = SignUpForm(self.request.POST)
         if form.is_valid():
+<<<<<<< a9dbb01b5d6ed79b5289bb8a604c7a60efd24853
             # import pdb; pdb.set_trace()
+=======
+            import pdb; pdb.set_trace()
+>>>>>>> admin, template/verify-email
             try:
                 first_name = self.request.POST['first_name']
                 last_name = self.request.POST['last_name']
