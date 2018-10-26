@@ -49,9 +49,26 @@ class SignUpView(TemplateView):
 
 
 
+class VerifyTokenView(TemplateView):
+        """ Verifying the token if existing or not
+        """
+        template_name = 'invoiceapp/dashboard.html'
+
+        def get(self, *args, **kwargs):
+            token = TokenGenerator.objects.filter(token=kwargs.get('token'), is_used=False)
+            if token.exists():
+                token_obj = token.first()
+                user = MyUser.objects.get(email=token_obj.user)
+                user.is_confirmed = True
+                token_obj.is_used =True
+                token_obj.save()
+                TokenGenerator.objects.filter(user=user, is_used=False).delete()
+                return render(self.request, self.template_name)
+            return render(self.request, self.template_name, {'error_messages': 'Token has already expired.'})
 
 
 class VerifyEmailView(TemplateView):
     """ Display instructions on verifying the email
     """
     template_name = 'accounts/verify_email.html'
+    return
