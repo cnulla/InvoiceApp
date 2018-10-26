@@ -1,4 +1,5 @@
 from django.db import models
+from uuid import uuid4
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -6,6 +7,7 @@ from django.contrib.auth.models import (
     )
 from django.utils.translation import ugettext_lazy as _
 # Create your models here.
+
 class MyUserManager(BaseUserManager):
     def _create_user(self, email, password=None, **extra_fields):
         """
@@ -71,4 +73,30 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.first_name
+
+
+    def generate_token(self):
+        from .models import TokenGenerator
+        return TokenGenerator.objects.create(user=self)
+
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class TokenGenerator(models.Model):
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    token = models.CharField(max_length=300)
+    is_used = models.BooleanField(default=False)
+    date_created = models.DateField(auto_now=True)
+
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.token = self.generate_token()
+        return super(TokenGenerator, self).save(*args, **kwargs)
+
+
+    def generate_token(self):
+        return uuid4().hex
 
