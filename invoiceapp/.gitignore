@@ -2,3 +2,16 @@
 *.sqlite3
 __pycache__/
 env/
+static/css/bootstrap-grid.css
+static/css/bootstrap-grid.css.map
+static/css/bootstrap-reboot.css
+static/css/bootstrap-reboot.css.map
+static/css/bootstrap-reboot.min.css
+static/css/bootstrap-reboot.min.css.map
+static/css/bootstrap.css
+static/css/bootstrap.css.map
+static/js/bootstrap.bundle.js
+static/js/bootstrap.bundle.js.map
+static/js/bootstrap.bundle.min.js
+static/js/bootstrap.bundle.min.js.map
+static/js/bootstrap.js
