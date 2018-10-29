@@ -89,6 +89,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
 
 class TokenGenerator(models.Model):
+    """ Generate Token for the User Email
+    """
     user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     token = models.CharField(max_length=300)
     is_used = models.BooleanField(default=False)

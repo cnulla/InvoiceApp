@@ -25,7 +25,7 @@ class SignUpView(TemplateView):
 
     def post(self, *args, **kwargs):
         form = SignUpForm(self.request.POST)
-
+        print (">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
         if form.is_valid():
             try:
                 first_name = self.request.POST['first_name']

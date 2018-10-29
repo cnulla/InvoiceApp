@@ -5,11 +5,11 @@ from django.contrib.auth import authenticate
 
 class SignUpForm(forms.ModelForm):
 
-    first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-    last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password'}), required=True)
-    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Confirm Password'}), required=True)
+    first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name','class':'form-control'}))
+    last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Confirm Password','class':'form-control'}), required=True)
 
     class Meta:
         model = MyUser
@@ -29,7 +29,7 @@ class SignUpForm(forms.ModelForm):
         email = email.lower()
         user = MyUser.objects.filter(email=email)
         if user.exists():
-            raise form.ValidationError('Email is already taken.')
+            raise forms.ValidationError('Email is already taken.')
         return email
 
 
