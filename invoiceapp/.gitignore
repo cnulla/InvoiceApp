@@ -1,7 +1,7 @@
 *.pyc
 *.sqlite3
 __pycache__/
-/env/
+env/
 assets/css/bootstrap-grid.css
 assets/css/bootstrap-grid.css.map
 assets/css/bootstrap-reboot.css
