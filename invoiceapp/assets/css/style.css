@@ -1,6 +1,9 @@
-.center {
+.left{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
-
 .getbullet{
  list-style: none;
 }
@@ -12,17 +15,17 @@ ul {
         color:red;
 }
 
-
 .image{
-  width: 50%;
-  height: 900px;
-  object-fit: contain;
-  background: url(/static/images/signup.jpg) no-repeat;
+  width:100vh;
+  height: 100vh;
+  background-size: contain;
+  background-image: url(/static/images/ben.jpg);
+  background-repeat: no-repeat;
 
 }
 
-.container{
+.contain{
     display: flex;
-    flex-direction: row;
-
+    justify-content: space-around;
+    width: 100:;
 }
