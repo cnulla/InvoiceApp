@@ -1,0 +1,28 @@
+.center {
+}
+
+.getbullet{
+ list-style: none;
+}
+
+ul {
+    list-style-type: none;
+}
+.red{
+        color:red;
+}
+
+
+.image{
+  width: 50%;
+  height: 900px;
+  object-fit: contain;
+  background: url(/static/images/signup.jpg) no-repeat;
+
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+
+}
