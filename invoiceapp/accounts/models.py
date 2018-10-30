@@ -30,14 +30,15 @@ class MyUserManager(BaseUserManager):
         """
         Creates and saves a superuser with the given email and password
         """
-        user = self._create_user(
-            email,
-            password = password,
-            extra_fields = extra_fields
-            )
-        user.is_admin = True
-        user.save(using=self._db)
-        return user
+        extra_fields.setdefault('is_active', True)
+        extra_fields.setdefault('is_admin', True)
+
+        if extra_fields.get('is_active') is not True:
+            raise ValueError('Superuser must have is_active=True.')
+        if extra_fields.get('is_admin') is not True:
+            raise ValueError('Superuser must have is_admin=True.')
+
+        return self._create_user(email, password, **extra_fields)
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
@@ -49,15 +50,16 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
 
     is_confirmed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
 
 
-    def __str__(self):
-        return self.email
+    def clean(self):
+        super(MyUser, self).clean()
+        self.email = self.__class__.objects.normalize_email(self.email)
 
 
     def has_perm(self, perm, obj=None):
