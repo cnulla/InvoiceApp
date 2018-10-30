@@ -16,9 +16,8 @@ ul {
 }
 
 .image{
-  width:100vh;
-  height: 100vh;
-  background-size: contain;
+
+  background-size: cover;
   background-image: url(/static/images/ben.jpg);
   background-repeat: no-repeat;
 
@@ -28,4 +27,9 @@ ul {
     display: flex;
     justify-content: space-around;
     width: 100:;
+}
+
+.automate {
+  font-size: 50px;
+  color: white;
 }
