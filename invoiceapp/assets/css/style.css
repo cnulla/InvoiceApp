@@ -16,7 +16,7 @@ ul {
 }
 
 .image{
-
+  height: 100vh;
   background-size: cover;
   background-image: url(/static/images/ben.jpg);
   background-repeat: no-repeat;
@@ -30,6 +30,16 @@ ul {
 }
 
 .automate {
+  width: 455px;
+  height: 172px;
+  font-family: Roboto;
   font-size: 50px;
-  color: white;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.32;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ffffff;
+
 }
