@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-6 left">
             <h3>Log in</h3>
-            <form method="POST" action="#" novalidate="">
+            <form method="POST" action="{% url 'signin' %}" novalidate="">
                 {% if form.errors %}
                <div class="red"> {{form.non_field_errors}} </div>
                 {% endif %}
