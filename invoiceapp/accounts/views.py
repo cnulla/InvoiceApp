@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 from django.core import mail
 
-from accounts.forms import SignUpForm
+from accounts.forms import SignUpForm, SignInForm
 
 # Create your views here.
 
@@ -71,3 +71,20 @@ class VerifyEmailView(TemplateView):
     """ Display instructions on verifying the email
     """
     template_name = 'accounts/verify_email.html'
+
+
+class SignInView(TemplateView):
+    """ User Log In
+    """
+    template_name = 'accounts/signin.html'
+
+    def get(self, *args, **kwargs):
+        form = SignInForm()
+        return render(self.request, self.template_name, {'form': form})
+
+    def post(self, *args, **kwargs):
+        form = SignInForm(self.request.POST)
+
+        if form.is_valid():
+            return render(self.request, 'invoiceapp/dashboard.html')
+        return render(self.request, self.template_name, {'form': form})
