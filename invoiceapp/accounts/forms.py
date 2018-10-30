@@ -4,6 +4,8 @@ from django.contrib.auth import authenticate
 
 
 class SignUpForm(forms.ModelForm):
+    """ User Sign Up Form
+    """
 
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name','class':'form-control'}))
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}))
@@ -41,28 +43,28 @@ class SignUpForm(forms.ModelForm):
         return user
 
 
-class LogInForm(forms.ModelForm):
 
-    user_cache = None
+class SignInForm(forms.Form):
+     """ User Sign In Form
+     """
+     user_cache = None
 
-    email = form.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
+     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
+     password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
 
-    def clean(self):
+     def clean(self):
         email = self.cleaned_data.get('email')
         email = email.lower()
         password = self.cleaned_data.get('password')
 
         user = authenticate(email=email, password=password)
         if not user:
-            raise.forms.ValidationError("Invalid Email or Password")
+            raise forms.ValidationError("Invalid Email or Password")
         else:
             self.user_cache=user
 
-        user = MyUser.objects.filter(email=email).first()
-        if user.is_confirmed == False:
-            raise.forms.ValidationError("Email Address is not verified")
-        return self.cleaned_data
-
-
+            user = MyUser.objects.filter(email=email).first()
+            if user.is_confirmed == False:
+                raise forms.ValidationError("Email Address is not verified")
+                return self.cleaned_data
 
