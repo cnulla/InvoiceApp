@@ -1,6 +1,6 @@
 from django import forms
 from accounts.models import MyUser
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,login
 
 
 class SignUpForm(forms.ModelForm):
@@ -45,26 +45,26 @@ class SignUpForm(forms.ModelForm):
 
 
 class SignInForm(forms.Form):
-     """ User Sign In Form
-     """
-     user_cache = None
+    """ User Sign In Form
+    """
+    user_cache = None
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
 
-     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
-     password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
-
-     def clean(self):
+    def clean(self):
         email = self.cleaned_data.get('email')
         email = email.lower()
         password = self.cleaned_data.get('password')
+        user = MyUser.objects.filter(email=email).first()
+        import pdb; pdb.set_trace()
+        if not user.is_confirmed:
+            raise forms.ValidationError("Email Address is not verified")
+        return self.cleaned_data
 
+    def login_user(self, request):
+        email = self.cleaned_data.get('email')
+        password = self.cleaned_data.get('password')
         user = authenticate(email=email, password=password)
-        if not user:
-            raise forms.ValidationError("Invalid Email or Password")
-        else:
-            self.user_cache=user
 
-            user = MyUser.objects.filter(email=email).first()
-            if user.is_confirmed == False:
-                raise forms.ValidationError("Email Address is not verified")
-                return self.cleaned_data
-
+        if user is not None:
+            login(request, user)
