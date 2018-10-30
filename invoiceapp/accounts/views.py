@@ -58,11 +58,12 @@ class VerifyTokenView(TemplateView):
             token = TokenGenerator.objects.filter(token=kwargs.get('token'), is_used=False)
             if token.exists():
                 token_obj = token.first()
-                user = MyUser.objects.get(email=token_obj.user)
+                user = MyUser.objects.get(email=token_obj.user.email)
                 user.is_confirmed = True
+                user.is_active = True
                 token_obj.is_used =True
-                token_obj.save()
-                TokenGenerator.objects.filter(user=user, is_used=False).delete()
+                user.save()
+                token_obj.delete()
                 return render(self.request, self.template_name)
             return render(self.request, self.template_name, {'error_messages': 'Token has already expired.'})
 
@@ -86,5 +87,8 @@ class SignInView(TemplateView):
         form = SignInForm(self.request.POST)
 
         if form.is_valid():
+            email = self.request.POST.get('email')
+            password = self.request.POST.get('password')
+            form.login_user(self.request)
             return render(self.request, 'invoiceapp/dashboard.html')
         return render(self.request, self.template_name, {'form': form})
