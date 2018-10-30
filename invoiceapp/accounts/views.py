@@ -85,10 +85,9 @@ class SignInView(TemplateView):
 
     def post(self, *args, **kwargs):
         form = SignInForm(self.request.POST)
-
         if form.is_valid():
-            email = self.request.POST.get('email')
-            password = self.request.POST.get('password')
             form.login_user(self.request)
+
             return render(self.request, 'invoiceapp/dashboard.html')
         return render(self.request, self.template_name, {'form': form})
+

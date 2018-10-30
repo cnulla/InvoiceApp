@@ -56,7 +56,7 @@ class SignInForm(forms.Form):
         email = email.lower()
         password = self.cleaned_data.get('password')
         user = MyUser.objects.filter(email=email).first()
-        import pdb; pdb.set_trace()
+
         if not user.is_confirmed:
             raise forms.ValidationError("Email Address is not verified")
         return self.cleaned_data
@@ -65,6 +65,6 @@ class SignInForm(forms.Form):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password')
         user = authenticate(email=email, password=password)
-
+        import pdb; pdb.set_trace()
         if user is not None:
             login(request, user)
