@@ -87,6 +87,6 @@ class SignInView(TemplateView):
         form = SignInForm(self.request.POST)
         if form.is_valid():
             form.login_user(self.request)
-            return render(self.request, 'invoiceapp/dashboard.html')
+            return redirect('dashboard')
         return render(self.request, self.template_name, {'form': form})
 
