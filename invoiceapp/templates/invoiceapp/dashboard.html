@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Welcome!!
+
+{% if user.is_authenticated%}
+Welcome!! {{request.user}}
+{% endif %}
+<a href="{% url 'signin' %}"> logout </a>
 {% endblock %}

@@ -6,12 +6,12 @@ from accounts.models import MyUser, TokenGenerator
 
 class UserAdmin(BaseUserAdmin):
 
-    list_display = ('email', 'is_admin')
+    list_display = ('email', 'is_admin', 'is_confirmed')
     list_filter = ('is_admin',)
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ('first_name', 'last_name')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'is_confirmed', 'is_active')}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
 
