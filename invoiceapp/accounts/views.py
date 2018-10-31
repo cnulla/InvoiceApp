@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse,redirect
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponseRedirect
@@ -87,7 +87,6 @@ class SignInView(TemplateView):
         form = SignInForm(self.request.POST)
         if form.is_valid():
             form.login_user(self.request)
-
             return render(self.request, 'invoiceapp/dashboard.html')
         return render(self.request, self.template_name, {'form': form})
 
