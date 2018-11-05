@@ -29,9 +29,12 @@
         <a class="nav-link" href="#">Invoices</a>
       </li>
     </ul>
-    <form class="form-inline ml-2 ml-lg-0">
-      Hello, {{request.user.first_name}}!
-    </form>
+    <span>
+     <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello, {{request.user.first_name}}! </a>
+     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="{% url 'signout'%}" id="nav"> Logout </a>
+     </div>
+    </span>
   </div>
 </nav>
 {% endif %}
