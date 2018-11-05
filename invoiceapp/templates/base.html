@@ -32,7 +32,7 @@
         <form class="form-inline">
             <button class="btn btn-sm btn-outline=secondary my-2 my-sm-0" type="button">Create Invoice</button>
         </form>
-    <span>
+    <span class="dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello, {{request.user.first_name}}! </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'signout'%}" id="nav"> Logout </a>
