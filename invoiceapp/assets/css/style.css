@@ -43,3 +43,16 @@ ul {
   color: #ffffff;
 
 }
+
+.center{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mymargin{
+  width: 25%;
+  margin-top: 5%;
+
+}
