@@ -16,6 +16,7 @@ class Client(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
+
     def get_full_name(self):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
@@ -25,6 +26,11 @@ class Company(models.Model):
     """ Create company
     """
     company_name = models.CharField(max_length=255, unique=True)
+
+
+    class Meta:
+        verbose_name_plural = 'Companies'
+
 
     def __str__(self):
         return self.company_name
