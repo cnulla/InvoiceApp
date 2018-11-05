@@ -90,3 +90,10 @@ class SignInView(TemplateView):
             return redirect('dashboard')
         return render(self.request, self.template_name, {'form': form})
 
+
+class SignOutView(TemplateView):
+    """ Sign Out User
+    """
+    def get(self, *args, **kwargs):
+        logout(self.request)
+        return redirect('signin')
