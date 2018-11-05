@@ -37,3 +37,23 @@ class CreateClientView(TemplateView):
             return HttpResponseRedirect(reverse('client'))
         return render(self.request, self.template_name, {'form': form})
 
+
+class CreateCompanyView(TemplateView):
+    """ Create company
+    """
+    template_name = 'invoiceapp/create_company.html'
+
+
+    def get(self, *args, **kwargs):
+        form = CompanyForm()
+        return render(self.request, self.template_name, {'form': form})
+
+
+    def post(self, *args, **kwargs):
+        form = CompanyForm(self.request.POST)
+        if form.is_valid():
+            company = form.save(commit=False)
+            company.save()
+            return HttpResponseRedirect(reverse('client'))
+        return render(self.request, self.template_name, {'form': form})
+
