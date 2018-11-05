@@ -2,12 +2,6 @@
 
 {% block content %}
 
-<<<<<<< Updated upstream
-{% if user.is_authenticated%}
-Welcome!! {{request.user}}
-{% endif %}
-<a href="{% url 'signin' %}"> logout </a>
-=======
 <a href="{% url 'signout' %}"> logout </a>
->>>>>>> Stashed changes
+
 {% endblock %}
