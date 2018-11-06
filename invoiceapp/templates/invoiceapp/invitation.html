@@ -3,4 +3,40 @@
 {% block title %} Send Invitation {% endblock %}
 
 {% block content %}
+<div class="container">
+    <div class="center">
+        <div class="card border-dark mb-3 mymargin">
+            <div class="card-header"> <h3> Send Invitation </h3> </div>
+            <div class="card-body text-dark">
+                {% if form.errors %}
+                {{form.non_field_errors}}
+                {% endif %}
+                <form method="POST" action="{% url 'invitation' %}" novalidate="">
+                    <div class="form-group row">
+                        {% csrf_token %}
+                        <label for="{{form.email.id_for_label}}"> Email Address </label>
+                        {{form.email}}
+                        <div class="red">{{form.email.errors}}</div>
+                    </div>
+                    <!--      <button type="submit" class="btn btn-primary">Create</button> -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              Your invitation has been send.
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
 {% endblock %}
