@@ -16,11 +16,17 @@ class Client(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
 
-
     def get_full_name(self):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
+
+    def generate_token(self):
+        from invoice.models import Invitation
+        return Invitation.objects.create(Client=self)
+
+    def __str__(self):
+        return self.first_name
 
 class Company(models.Model):
     """ Create company
@@ -40,16 +46,82 @@ class Invitation(models.Model):
     """Send Invitation to the clients
     """
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
+    email = models.EmailField(max_length=255, null=True)
     is_used = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     token = models.CharField(max_length=300)
 
-
     def save(self, *args, **kwargs):
         if not self.id:
             self.token = self.generate_token()
-        return super(TokenGenerator, self).save(*args, **kwargs)
-
+        return super(Invitation, self).save(*args, **kwargs)
 
     def generate_token(self):
         return uuid4().hex
+
+
+class Item(models.Model):
+    """ User Item model
+    """
+    FIXED = 'fixed'
+    HOURLY = 'hourly'
+    ITEM_TYPE = (
+                (FIXED, 'Fixed Price'),
+                (HOURLY, 'Hourly')
+        )
+
+    invoice = models.ForeignKey('Invoice', on_delete=models.CASCADE)
+
+    order_number = models.PositiveIntegerField(null=True, blank=True, unique=True)
+    order_description = models.TextField(max_length=255)
+    order_date = models.DateField()
+    end_date = models.DateField()
+
+    rate = models.PositiveIntegerField(null=True, blank=True)
+    total_hours = models.PositiveIntegerField(null=True, blank=True)
+    amount = models.PositiveIntegerField(null=True, blank=True)
+    total_amount = models.PositiveIntegerField(null=True, blank=True)
+
+    remarks = models.TextField(max_length=255)
+    item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
+
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    def total(self):
+        return self.rate*self.total_hours
+
+
+    def __str__(self):
+        return self.order_number
+
+
+class Invoice(models.Model):
+    """ User Invoice model
+    """
+    client = models.ForeignKey('Client', on_delete=models.CASCADE)
+
+    invoice_number = models.PositiveIntegerField(null=True, blank=True, unique=True)
+    invoice_description = models.TextField(max_length=255)
+
+    invoice_date = models.DateField()
+    due_date = models.DateField()
+
+    payment_status = models.BooleanField(default=False)
+    is_draft = models.BooleanField(default=False)
+    remarks = models.TextField(max_length=255)
+
+    subtotal = models.PositiveIntegerField(null=True, blank=True)
+    less = models.PositiveIntegerField(null=True, blank=True)
+    total = models.PositiveIntegerField(null=True, blank=True)
+
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+
+    def total_invoice(self):
+        return self.total-self.less
+
+
+    def __str__(self):
+        return self.invoice_number
