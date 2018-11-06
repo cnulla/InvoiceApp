@@ -2,7 +2,11 @@ from django.shortcuts import render, reverse, redirect
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponseRedirect
 
-from invoice.forms import ClientForm, CompanyForm
+from invoice.forms import (
+    ClientForm,
+    CompanyForm,
+    InvitationForm,
+    )
 
 # Create your views here.
 
@@ -56,4 +60,24 @@ class CreateCompanyView(TemplateView):
             company.save()
             return HttpResponseRedirect(reverse('client'))
         return render(self.request, self.template_name, {'form': form})
+
+
+class InvitationView(TemplateView):
+    """ User send invitation to client
+    """
+    template_name = 'invoiceapp/invitation.html'
+
+
+    def get(self, *args, **kwargs):
+        form = InvitationForm()
+        return render(self.request, self.template_name, {'form': form})
+
+
+    def post(self, *args, **kwargs):
+        form = InvitationForm(self.request.POST)
+        if form.is_valid():
+            invitation = form.save(commit=False)
+            invitation.save()
+            return HttpResponseRedirect(reverse('client'))
+        return render(self.request, self.template_name, {'form': form })
 
