@@ -5,6 +5,7 @@ from invoice.views import (
     ClientView,
     CreateCompanyView,
     InvitationView,
+    VerifyInvitationView,
     )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     path('create-client/', CreateClientView.as_view(), name='create-client'),
     path('create-company/', CreateCompanyView.as_view(), name='create-company'),
     path('invitation/', InvitationView.as_view(), name='invitation'),
+    path('verify-invitation/', VerifyInvitationView.as_view(), name='verify-invitation'),
 
 
 ]
