@@ -53,5 +53,13 @@
 <script type="text/javascript" src="{% static 'js/popper.min.js'%}" ></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}" ></script>
 
+<script type="text/javascript">
+
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+  })
+</script>
+
+
 </body>
 </html>
