@@ -13,6 +13,7 @@ class ClientForm(forms.ModelForm):
                 ]
 
         widgets = {
+                'company': forms.Select(attrs={'class': 'form-control'}),
                 'first_name': forms.TextInput(attrs={'class': 'form-control'}),
                 'last_name': forms.TextInput(attrs={'class': 'form-control'}),
                 'province': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Province'}),
@@ -50,3 +51,16 @@ class CompanyForm(forms.ModelForm):
             'company_name': forms.TextInput(attrs={'class': 'form-control'})
         }
 
+
+class InvitationForm(forms.ModelForm):
+    """User send invitation form to the client
+    """
+    class Meta:
+        model = Client
+        fields = [
+                'email'
+        ]
+
+        widgets = {
+                'email': forms.TextInput(attrs={'class': 'form-control'})
+        }
