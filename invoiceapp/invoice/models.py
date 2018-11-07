@@ -1,4 +1,5 @@
 from django.db import models
+from uuid import uuid4
 
 # Create your models here.
 
@@ -23,7 +24,7 @@ class Client(models.Model):
 
     def generate_token(self):
         from invoice.models import Invitation
-        return Invitation.objects.create(Client=self)
+        return Invitation.objects.create(client=self)
 
     def __str__(self):
         return self.first_name
@@ -125,3 +126,5 @@ class Invoice(models.Model):
 
     def __str__(self):
         return self.invoice_number
+
+

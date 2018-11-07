@@ -52,9 +52,10 @@ class CompanyForm(forms.ModelForm):
         }
 
 
-class InvitationForm(forms.ModelForm):
+class InvitationForm(forms.Form):
     """User send invitation form to the client
     """
+
     class Meta:
         model = Client
         fields = [
