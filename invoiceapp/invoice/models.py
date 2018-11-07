@@ -6,7 +6,7 @@ class Client(models.Model):
     """ Create model for Client
     """
 
-    company = models.ForeignKey('Company', on_delete=models.CASCADE)
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, blank=True, null=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     province = models.CharField(max_length=255)
