@@ -33,7 +33,11 @@
         </form>
     </ul>
         <form class="form-inline">
-            <button class="btn btn-sm btn-outline=secondary my-2 my-sm-0" type="button">Create Invoice</button>
+            <a href="{% url 'create-invoice' %}">
+                <button class="btn btn-sm btn-outline=secondary my-2 my-sm-0" type="button">
+                Create Invoice
+                </button>
+            </a>
         </form>
     <span class="dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Hello, {{request.user.first_name}}! </a>
