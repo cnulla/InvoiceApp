@@ -66,3 +66,10 @@ class CreateCompanyView(TemplateView):
             company.save()
             return HttpResponseRedirect(reverse('client'))
         return render(self.request, self.template_name, {'form': form})
+
+
+class CreateInvoiceView(TemplateView):
+    """Create Invoice for client
+    """
+    template_name = 'invoiceapp/create_invoice.html'
+
