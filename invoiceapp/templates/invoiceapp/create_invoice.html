@@ -3,5 +3,49 @@
 {% block title %} Create Invoice {% endblock %}
 
 {% block content %}
-
+<div class="create_invoice">
+<!-- <div class="card border-dark mb-3 ">
+    <div class="card-header"> <h3> Create Invoice </h3> </div>
+        <div class="card-body text-dark"> -->
+        {% if form.errors %}
+        {{form.non_field_errors}}
+        {% endif %}
+        <form method="POST" action="#" novalidate="">
+            <div class="form-group row">
+                {% csrf_token %}
+                <label for="{{form.invoice_number.id_for_label}}"> Invoice Number </label>
+                {{form.invoice_number}}
+                <div class="red">{{form.invoice_number.errors}}</div>
+            </div>
+            <div class="form-group row">
+                <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
+                {{form.invoice_description}}
+                <div class="red">{{form.invoice_description.errors}}</div>
+            </div>
+            <div class="form-group row">
+                <label for="{{form.client.id_for_label}}"> Bill To </label>
+                {{form.company}}
+                <div class="red">{{form.company.errors}}</div>
+            </div>
+            <div class="form-group row">
+                <label> Payment Status </label>
+                {{form.payment_status}}
+                <div class="red">{{form.payment_status.errors}}</div>
+            </div>
+            <div class="row">
+                <label> Dates </label>
+                <div class ='col'>
+                    {{form.invoice_date}}
+                    <div class="red">{{form.invoice_date.errors}}</div>
+                </div>
+                <div class="col">
+                    {{form.due_date}}
+                    <div class="red">{{form.due_date.errors}}</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+      <!--  </div>
+    </div> -->
+</div>
 {% endblock %}
