@@ -1,6 +1,11 @@
 from django import forms
-from invoice.models import Client, Company
-
+from invoice.models import (
+    Client,
+    Company,
+    Invitation,
+    Item,
+    Invoice,
+    )
 
 class ClientForm(forms.ModelForm):
     """ Creating forms for client
@@ -57,11 +62,35 @@ class InvitationForm(forms.Form):
     """
 
     class Meta:
-        model = Client
+        model = Invitation
         fields = [
                 'email'
         ]
 
         widgets = {
                 'email': forms.TextInput(attrs={'class': 'form-control'})
+        }
+
+
+class InvoiceForm(forms.ModelForm):
+    """ Create invoice form
+    """
+
+    class Meta:
+        model = Invoice
+        fields = [
+                'invoice_number', 'invoice_description', 'company', 'payment_status',
+                'invoice_date', 'due_date'
+
+        ]
+
+        widgets = {
+                'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
+                'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
+                'company': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select a Client'}),
+                'item_type': forms.Select(attrs={'class': 'form-control'}),
+                'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
+                'invoice_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'yyyy/mm/dd'}),
+                'due_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
+
         }
