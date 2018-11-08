@@ -11,7 +11,7 @@ from django.core import mail
 from invoice.forms import (
     ClientForm,
     CompanyForm,
-    InvitationForm,
+    InvoiceForm,
     )
 
 # Create your views here.
@@ -73,3 +73,15 @@ class CreateInvoiceView(TemplateView):
     """
     template_name = 'invoiceapp/create_invoice.html'
 
+    def get(self,*args, **kwargs):
+        form = InvoiceForm()
+        return render(self.request, self.template_name, {'form': form})
+
+
+    def post(self, *args, **kwargs):
+        form = InvoiceForm(self.request.POST)
+        if form.is_valid():
+            invoice = form.save(commit=False)
+            invoice.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+        return render(self.request, self.template_name, {'form': form})
