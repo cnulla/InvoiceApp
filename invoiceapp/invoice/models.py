@@ -101,6 +101,7 @@ class Invoice(models.Model):
     """ User Invoice model
     """
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
+    company = models.ForeignKey('Company', on_delete=models.CASCADE, null=True, blank=True)
 
     invoice_number = models.PositiveIntegerField(null=True, blank=True, unique=True)
     invoice_description = models.TextField(max_length=255)
