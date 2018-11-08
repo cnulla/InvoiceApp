@@ -59,7 +59,18 @@
 
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
-  })
+  });
+
+    $(document).ready(function(e) {
+        $('#id_total_hours').change(function() {
+            var product = 0;
+            var x = $('#id_rate').val()
+            var y = $('#id_total_hours').val()
+            var total = parseFloat(x*y)
+            console.log(total,'yey')
+            $('#id_total_amount').val(total);
+        });
+    });
 </script>
 </body>
 </html>
