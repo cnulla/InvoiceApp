@@ -33,11 +33,9 @@ class CreateClientView(TemplateView):
     """
     template_name = 'invoiceapp/create_clients.html'
 
-
     def get(self, *args, **kwargs):
         form = ClientForm()
         return render(self.request, self.template_name, {'form': form})
-
 
     def post(self, *args, **kwargs):
         form = ClientForm(self.request.POST)
@@ -53,11 +51,9 @@ class CreateCompanyView(TemplateView):
     """
     template_name = 'invoiceapp/create_company.html'
 
-
     def get(self, *args, **kwargs):
         form = CompanyForm()
         return render(self.request, self.template_name, {'form': form})
-
 
     def post(self, *args, **kwargs):
         form = CompanyForm(self.request.POST)
@@ -76,7 +72,6 @@ class CreateInvoiceView(TemplateView):
     def get(self,*args, **kwargs):
         form = InvoiceForm()
         return render(self.request, self.template_name, {'form': form})
-
 
     def post(self, *args, **kwargs):
         form = InvoiceForm(self.request.POST)

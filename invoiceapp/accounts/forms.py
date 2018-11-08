@@ -7,7 +7,6 @@ from django.shortcuts import get_object_or_404, redirect
 class SignUpForm(forms.ModelForm):
     """ User Sign Up Form
     """
-
     first_name = forms.CharField(label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name','class':'form-control'}))
     last_name = forms.CharField(label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name','class':'form-control'}))
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
@@ -18,14 +17,12 @@ class SignUpForm(forms.ModelForm):
         model = MyUser
         fields = ('first_name', 'last_name', 'email', 'password', 'confirm_password')
 
-
     def clean_confirm_password(self):
         password = self.cleaned_data.get('password')
         confirm_password = self.cleaned_data.get('confirm_password')
         if password and confirm_password and password != confirm_password:
             raise forms.ValidationError('Password doesn\'t match.')
         return confirm_password
-
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -35,7 +32,6 @@ class SignUpForm(forms.ModelForm):
             raise forms.ValidationError('Email is already taken.')
         return email
 
-
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
@@ -44,11 +40,9 @@ class SignUpForm(forms.ModelForm):
         return user
 
 
-
 class SignInForm(forms.Form):
     """ User Sign In Form
     """
-
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email','class':'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'minLength': 8, 'placeholder': 'Password','class':'form-control'}), required=True)
     user_cache = None
@@ -74,7 +68,6 @@ class SignInForm(forms.Form):
             not self.user_cache.is_active:
             raise forms.ValidationError('Invalid email or password')
         return self.cleaned_data
-
 
     def login_user(self, request):
         email = self.cleaned_data.get('email')

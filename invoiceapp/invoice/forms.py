@@ -10,7 +10,6 @@ from invoice.models import (
 class ClientForm(forms.ModelForm):
     """ Creating forms for client
     """
-
     class Meta:
         model = Client
         fields = [
@@ -28,8 +27,6 @@ class ClientForm(forms.ModelForm):
 
         }
 
-
-
     def clean_email(self):
         """Validate email
         """
@@ -45,7 +42,6 @@ class ClientForm(forms.ModelForm):
 class CompanyForm(forms.ModelForm):
     """ Creating forms for company
     """
-
     class Meta:
         model = Company
         fields = [
@@ -60,7 +56,6 @@ class CompanyForm(forms.ModelForm):
 class InvitationForm(forms.Form):
     """User send invitation form to the client
     """
-
     class Meta:
         model = Invitation
         fields = [
@@ -75,7 +70,6 @@ class InvitationForm(forms.Form):
 class InvoiceForm(forms.ModelForm):
     """ Create invoice form
     """
-
     class Meta:
         model = Invoice
         fields = [
