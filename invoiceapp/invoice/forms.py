@@ -67,6 +67,12 @@ class InvitationForm(forms.Form):
         }
 
 
+class DateInput(forms.DateInput):
+    """ date picker
+    """
+    input_type = 'date'
+
+
 class InvoiceForm(forms.ModelForm):
     """ Create invoice form
     """
@@ -75,16 +81,13 @@ class InvoiceForm(forms.ModelForm):
         fields = [
                 'invoice_number', 'invoice_description', 'company', 'payment_status',
                 'invoice_date', 'due_date'
-
         ]
 
         widgets = {
                 'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
                 'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'company': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select a Client'}),
-                'item_type': forms.Select(attrs={'class': 'form-control'}),
                 'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
-                'invoice_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'yyyy/mm/dd'}),
-                'due_date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Due Date'}),
-
+                'invoice_date': DateInput(),
+                'due_date': DateInput(),
         }
