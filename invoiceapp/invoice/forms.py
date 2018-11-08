@@ -86,8 +86,33 @@ class InvoiceForm(forms.ModelForm):
         widgets = {
                 'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
                 'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
-                'company': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Select a Client'}),
+                'company': forms.Select(attrs={'class': 'form-control'}),
                 'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
                 'invoice_date': DateInput(),
                 'due_date': DateInput(),
         }
+
+
+class ItemForm(forms.ModelForm):
+    """ Create item form
+    """
+    class Meta:
+        model = Item
+        fields = [
+            'order_number', 'order_description', 'order_date', 'end_date', 'amount',
+            'item_type', 'rate', 'total_hours', 'total_amount', 'remarks'
+        ]
+
+        widgets = {
+                'order_number': forms.NumberInput(attrs={'class': 'form-control'}),
+                'order_description': forms.Textarea(attrs={'class': 'form-control'}),
+                'order_date': DateInput(),
+                'end_date': DateInput(),
+                'amount': forms.NumberInput(attrs={'class': 'form-control'}),
+                'item_type': forms.Select(attrs={'class': 'form-control'}),
+                'rate': forms.NumberInput(attrs={'class': 'form-control'}),
+                'total_hours': forms.NumberInput(attrs={'class': 'form-control'}),
+                'total_amount': forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}),
+                'remarks': forms.Textarea(attrs={'class': 'form-control'}),
+        }
+
