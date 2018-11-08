@@ -12,6 +12,7 @@ from invoice.forms import (
     ClientForm,
     CompanyForm,
     InvoiceForm,
+    ItemForm,
     )
 
 # Create your views here.
@@ -70,13 +71,25 @@ class CreateInvoiceView(TemplateView):
     template_name = 'invoiceapp/create_invoice.html'
 
     def get(self,*args, **kwargs):
-        form = InvoiceForm()
-        return render(self.request, self.template_name, {'form': form})
+        invoice_form = InvoiceForm()
+        item_form = ItemForm()
+        context = {
+            'inv_form': invoice_form,
+            'itm_form': item_form,
+        }
+        return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
-        form = InvoiceForm(self.request.POST)
-        if form.is_valid():
-            invoice = form.save(commit=False)
+        invoice_form = InvoiceForm(self.request.POST)
+        item_form = ItemForm(self.request.POST)
+        if invoice_form.is_valid() and item_form.is_valid():
+            invoice = invoice_form.save(commit=False)
+            item = item_form.save(commit=False)
             invoice.save()
+            item.save()
             return HttpResponseRedirect(reverse('dashboard'))
-        return render(self.request, self.template_name, {'form': form})
+        context = {
+            'inv_form': invoice_form,
+            'itm_form': item_form,
+        }
+        return render(self.request, self.template_name, context)
