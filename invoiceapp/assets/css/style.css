@@ -56,3 +56,10 @@ ul {
   margin-top: 5%;
 
 }
+
+.create_invoice{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
