@@ -93,3 +93,10 @@ class CreateInvoiceView(TemplateView):
             'itm_form': item_form,
         }
         return render(self.request, self.template_name, context)
+
+
+class ItemFormView(TemplateView):
+    template_name = 'invoiceapp/item_order_form.html'
+
+    def get(self, *args, **kwargs):
+        return render(self.request, self.template_name, {'form': ItemForm()})
