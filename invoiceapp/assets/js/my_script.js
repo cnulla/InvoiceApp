@@ -4,7 +4,7 @@ $('#myModal').on('shown.bs.modal', function () {
 });
 
 $(document).ready(function() {
-    $('#id_total_hours').change(function() {
+    $(document).on('change', '#id_total_hours', function() {
         var product = 0;
         var rate = $('#id_rate').val()
         var hours = $('#id_total_hours').val()
@@ -16,7 +16,29 @@ $(document).ready(function() {
     $('#add-order').click(function(){
         var url  = $(this).data('url');
         $.get(url, function(data, status){
-            $('#mydiv').append(data);
+            console.log(data, 'data0');
+            $('#myform').append(data);
         });
     });
+
+    var orders = [];
+    $('#add-invoice').on('click', function(){
+        var itemForm = $('.item-form');
+
+        console.log('#add-invoice')
+        itemForm.each(function(index, item){
+            console.log(item, 'test');
+            var data = {};
+            $(item).serializeArray().map(function(x){data[x.name] = x.value;});
+            console.log(data);
+            orders.push(data);
+        });
+        console.log(orders, '>>>>>>>>');
+
+        $('input[name="orders"]').val(orders)
+
+    });
+
+
 });
+
