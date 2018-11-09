@@ -82,6 +82,7 @@ class CreateInvoiceView(TemplateView):
     def post(self, *args, **kwargs):
         invoice_form = InvoiceForm(self.request.POST)
         item_form = ItemForm(self.request.POST)
+
         if invoice_form.is_valid() and item_form.is_valid():
             invoice = invoice_form.save(commit=False)
             item = item_form.save(commit=False)

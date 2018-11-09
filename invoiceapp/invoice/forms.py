@@ -113,6 +113,6 @@ class ItemForm(forms.ModelForm):
                 'rate': forms.NumberInput(attrs={'class': 'form-control'}),
                 'total_hours': forms.NumberInput(attrs={'class': 'form-control'}),
                 'total_amount': forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}),
-                'remarks': forms.Textarea(attrs={'class': 'form-control'}),
+                'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
 

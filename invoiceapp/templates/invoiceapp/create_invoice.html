@@ -41,64 +41,18 @@
             <div class="col">
                 {{inv_form.due_date}}
                 <div class="red">{{inv_form.due_date.errors}}</div>
-            </div><!-- Invoice Dates -->
-        </div>
-        <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
-        <!-- Item Form -->
-        <div id="mydiv"> Test</div>
-      <!--   <div class="form-group row">
-            <label> Order Number </label>
-            {{itm_form.order_number}}
-            <div class="red">{{itm_form.order_number.errors}}</div>
-        </div>
-        <div class="row">
-            <div class ='col'>
-                <label>Order Description</label>
-                {{itm_form.order_description}}
-                <div class="red">{{itm_form.order_description.errors}}</div>
-            </div>
-            <div class="col">
-                <label>Order Type</label>
-                {{itm_form.item_type}}
-                <div class="red">{{itm_form.item_type.errors}}</div>
-            </div>Order Description and Item Type
-        </div>
-        <div class="row">
-            <label> Duration </label>
-            <div class ='col'>
-                {{itm_form.order_date}}
-                <div class="red">{{itm_form.order_date.errors}}</div>
-            </div>
-            <label> Due Date </label>
-            <div class="col">
-                {{itm_form.end_date}}
-                <div class="red">{{itm_form.end_date.errors}}</div>
-            </div>Duration
-        </div>
-        <div class="row">
-            <div class ='col-4'>
-                <label>Rate</label>
-                {{itm_form.rate}}
-                <div class="red">{{itm_form.rate.errors}}</div>
-            </div>
-            <div class="col-4">
-                <label>Hours</label>
-                {{itm_form.total_hours}}
-                <div class="red">{{itm_form.total_hours.errors}}</div>
-            </div>
-            <div class="col-4">
-                <label>Total Amount</label>
-                {{itm_form.total_amount}}
-                <div class="red">{{itm_form.total_amount.errors}}</div>
-            </div>Rate, Hours and Total Amount
+            </div><!-- Invoice Dates --><!-- Dates -->
         </div>
         <div class="form-group row">
-            <label> Remarks(optional) </label>
-            {{itm_form.remarks}}
-            <div class="red">{{itm_form.remarks.errors}}</div>Remarks
-        </div> -->
+            <label> Payment Status </label>
+            {{itm_form.item_type}}
+        </div>
+        <div id="myform"></div>
+        <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
+        <!-- Item Form -->
+        <input type="hidden" name="orders">
 
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button id="add-invoice" type="button" class="btn btn-primary">Create</button>
     </form>
 </div>
 
