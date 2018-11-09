@@ -55,22 +55,7 @@
 <script type="text/javascript" src="{% static 'js/jquery.min.js'%}" ></script>
 <script type="text/javascript" src="{% static 'js/popper.min.js'%}" ></script>
 <script type="text/javascript" src="{% static 'js/bootstrap.min.js'%}" ></script>
-<script type="text/javascript">
-
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
-  });
-
-    $(document).ready(function(e) {
-        $('#id_total_hours').change(function() {
-            var product = 0;
-            var x = $('#id_rate').val()
-            var y = $('#id_total_hours').val()
-            var total = parseFloat(x*y)
-            console.log(total,'yey')
-            $('#id_total_amount').val(total);
-        });
-    });
-</script>
+<script type="text/javascript" src="{% static 'js/my_script.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/myjquery.min.js'%}"></script>
 </body>
 </html>
