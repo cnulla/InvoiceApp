@@ -1,1 +1,60 @@
+{% load static %}
+<html>
+<body>
 
+    <div class="form-group row">
+        <label> Order Number </label>
+        {{form.order_number}}
+        <div class="red">{{form.order_number.errors}}</div><!-- Order Number -->
+    </div>
+    <div class="row"><!-- Order Description and Item Type -->
+        <div class ='col'>
+            <label>Order Description</label>
+            {{form.order_description}}
+            <div class="red">{{form.order_description.errors}}</div>
+        </div>
+        <div class="col">
+            <label>Order Type</label>
+            {{form.item_type}}
+            <div class="red">{{form.item_type.errors}}</div>
+        </div>
+    </div>
+    <div class="row"><!-- Duration -->
+        <label> Duration </label>
+        <div class ='col'>
+            {{form.order_date}}
+            <div class="red">{{form.order_date.errors}}</div>
+        </div>
+        <label> Due Date </label>
+        <div class="col">
+            {{form.end_date}}
+            <div class="red">{{form.end_date.errors}}</div>
+        </div>
+    </div>
+    <div class="row"><!-- Rate, Hours and Total Amount -->
+        <div class ='col-4'>
+            <label>Rate</label>
+            {{form.rate}}
+            <div class="red">{{form.rate.errors}}</div>
+        </div>
+        <div class="col-4">
+            <label>Hours</label>
+            {{form.total_hours}}
+            <div class="red">{{form.total_hours.errors}}</div>
+        </div>
+        <div class="col-4">
+            <label>Total Amount</label>
+            {{form.total_amount}}
+            <div class="red">{{form.total_amount.errors}}</div>
+        </div>
+    </div>
+    <div class="form-group row"><!-- Remarks -->
+        <label> Remarks(optional) </label>
+        {{form.remarks}}
+        <div class="red">{{form.remarks.errors}}</div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/my_script.js'%}"></script>
+
+</body>
+</html>
