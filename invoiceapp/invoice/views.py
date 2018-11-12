@@ -7,6 +7,7 @@ from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core import mail
+import json
 
 from invoice.forms import (
     ClientForm,
@@ -72,26 +73,19 @@ class CreateInvoiceView(TemplateView):
 
     def get(self,*args, **kwargs):
         invoice_form = InvoiceForm()
-        item_form = ItemForm()
         context = {
             'inv_form': invoice_form,
-            'itm_form': item_form,
         }
         return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
         invoice_form = InvoiceForm(self.request.POST)
-        item_form = ItemForm(self.request.POST)
-
-        if invoice_form.is_valid() and item_form.is_valid():
+        if invoice_form.is_valid():
             invoice = invoice_form.save(commit=False)
-            item = item_form.save(commit=False)
             invoice.save()
-            item.save()
             return HttpResponseRedirect(reverse('dashboard'))
         context = {
             'inv_form': invoice_form,
-            'itm_form': item_form,
         }
         return render(self.request, self.template_name, context)
 

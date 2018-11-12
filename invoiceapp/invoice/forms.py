@@ -84,12 +84,12 @@ class InvoiceForm(forms.ModelForm):
         ]
 
         widgets = {
-                'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
-                'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
-                'company': forms.Select(attrs={'class': 'form-control'}),
-                'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
-                'invoice_date': DateInput(),
-                'due_date': DateInput(),
+                'invoice_number': forms.TextInput(attrs={'class': 'form-control', 'id': 'invoice_number'}),
+                'invoice_description': forms.Textarea(attrs={'class': 'form-control', 'id': 'invoice_description'}),
+                'company': forms.Select(attrs={'class': 'form-control', 'id': 'company'}),
+                'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline', 'id': 'payment_status'}),
+                'invoice_date': DateInput(attrs={'id': 'invoice_date'}),
+                'due_date': DateInput(attrs={'id': 'due_date'}),
         }
 
 
@@ -115,4 +115,5 @@ class ItemForm(forms.ModelForm):
                 'total_amount': forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}),
                 'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
+
 

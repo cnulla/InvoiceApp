@@ -77,7 +77,7 @@ class Item(models.Model):
     total_hours = models.PositiveIntegerField(null=True, blank=True)
     amount = models.PositiveIntegerField(null=True, blank=True)
     total_amount = models.PositiveIntegerField(null=True, blank=True)
-    remarks = models.TextField(max_length=255)
+    remarks = models.TextField(max_length=255, null=True, blank=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -92,7 +92,6 @@ class Item(models.Model):
 class Invoice(models.Model):
     """ User Invoice model
     """
-    client = models.ForeignKey('Client', on_delete=models.CASCADE)
     company = models.ForeignKey('Company', on_delete=models.CASCADE, null=True, blank=True)
     invoice_number = models.PositiveIntegerField(null=True, blank=True, unique=True)
     invoice_description = models.TextField(max_length=255)
@@ -109,6 +108,3 @@ class Invoice(models.Model):
 
     def total_invoice(self):
         return self.total-self.less
-
-    def __str__(self):
-        return self.invoice_number
