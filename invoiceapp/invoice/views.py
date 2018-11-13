@@ -73,19 +73,31 @@ class CreateInvoiceView(TemplateView):
 
     def get(self,*args, **kwargs):
         invoice_form = InvoiceForm()
+        item_form = ItemForm()
         context = {
             'inv_form': invoice_form,
+            'itm_form': item_form,
         }
         return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
+        import pdb; pdb.set_trace();
         invoice_form = InvoiceForm(self.request.POST)
+        item_form = ItemForm(self.request.POST)
+        success = False
         if invoice_form.is_valid():
             invoice = invoice_form.save(commit=False)
             invoice.save()
+            success = True
+        if item_form.is_valid():
+            item = item_form.save(commit=False)
+            item.save()
+            success = True
+        if success:
             return HttpResponseRedirect(reverse('dashboard'))
         context = {
             'inv_form': invoice_form,
+            'itm_form': item_form
         }
         return render(self.request, self.template_name, context)
 
@@ -94,4 +106,4 @@ class ItemFormView(TemplateView):
     template_name = 'invoiceapp/item_order_form.html'
 
     def get(self, *args, **kwargs):
-        return render(self.request, self.template_name, {'form': ItemForm()})
+        return render(self.request, self.template_name, {'itm_form': ItemForm()})

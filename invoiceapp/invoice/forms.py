@@ -104,7 +104,7 @@ class ItemForm(forms.ModelForm):
         ]
 
         widgets = {
-                'order_number': forms.NumberInput(attrs={'class': 'form-control'}),
+                'order_number': forms.NumberInput(attrs={'class': 'form-control', 'id': 'order_number'}),
                 'order_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'order_date': DateInput(),
                 'end_date': DateInput(),
@@ -115,5 +115,6 @@ class ItemForm(forms.ModelForm):
                 'total_amount': forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}),
                 'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
+
 
 

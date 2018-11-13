@@ -99,7 +99,6 @@ class Invoice(models.Model):
     due_date = models.DateField()
     payment_status = models.BooleanField(default=False)
     is_draft = models.BooleanField(default=False)
-    remarks = models.TextField(max_length=255)
     subtotal = models.PositiveIntegerField(null=True, blank=True)
     less = models.PositiveIntegerField(null=True, blank=True)
     total = models.PositiveIntegerField(null=True, blank=True)
@@ -108,3 +107,4 @@ class Invoice(models.Model):
 
     def total_invoice(self):
         return self.total-self.less
+

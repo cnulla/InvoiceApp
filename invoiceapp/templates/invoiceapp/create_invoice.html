@@ -6,7 +6,6 @@
 <div class="create_invoice">
     {% if form.errors %}
     {{inv_form.non_field_errors}}
-    {{itm_form.non_field_errors}}
     {% endif %}
     <form method="POST" action="{% url 'create-invoice'%}" novalidate="" class='create-invoice'>
         <!-- Invoice Form -->
@@ -50,7 +49,7 @@
         <div id="myform"></div>
         <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
         <!-- Item Form -->
-        <input type="hidden" name="orders">
+        <input type="hidden" name="orders" id="orders">
 
         <button id="add-invoice" type="button" class="btn btn-primary" onClick="InvoiceForm.submit()">Create</button>
     </form>
