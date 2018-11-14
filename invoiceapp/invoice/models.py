@@ -85,8 +85,6 @@ class Item(models.Model):
     def total(self):
         return self.rate*self.total_hours
 
-    def __str__(self):
-        return self.order_number
 
 
 class Invoice(models.Model):
@@ -107,4 +105,3 @@ class Invoice(models.Model):
 
     def total_invoice(self):
         return self.total-self.less
-

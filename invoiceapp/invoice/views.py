@@ -16,6 +16,7 @@ from invoice.forms import (
     ItemForm,
     )
 
+from .mixins import InvoiceMixins
 # Create your views here.
 
 class DashboardView(TemplateView):
@@ -66,38 +67,30 @@ class CreateCompanyView(TemplateView):
         return render(self.request, self.template_name, {'form': form})
 
 
-class CreateInvoiceView(TemplateView):
+class CreateInvoiceView(InvoiceMixins,TemplateView):
     """Create Invoice for client
     """
     template_name = 'invoiceapp/create_invoice.html'
 
     def get(self,*args, **kwargs):
-        invoice_form = InvoiceForm()
-        item_form = ItemForm()
+        form = InvoiceForm()
         context = {
-            'inv_form': invoice_form,
-            'itm_form': item_form,
+            'form': form,
         }
         return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
+        form = InvoiceForm(self.request.POST)
         import pdb; pdb.set_trace();
-        invoice_form = InvoiceForm(self.request.POST)
-        item_form = ItemForm(self.request.POST)
-        success = False
-        if invoice_form.is_valid():
-            invoice = invoice_form.save(commit=False)
-            invoice.save()
-            success = True
-        if item_form.is_valid():
-            item = item_form.save(commit=False)
-            item.save()
-            success = True
-        if success:
+        if form.is_valid():
+            invoice = form.save()
+            items = self.request.POST.get('items')
+            items = json.loads(items)
+            for item in items:
+                self.add_item(invoice, item)
             return HttpResponseRedirect(reverse('dashboard'))
         context = {
-            'inv_form': invoice_form,
-            'itm_form': item_form
+            'form': form,
         }
         return render(self.request, self.template_name, context)
 

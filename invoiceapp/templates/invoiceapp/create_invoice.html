@@ -7,39 +7,39 @@
     {% if form.errors %}
     {{inv_form.non_field_errors}}
     {% endif %}
-    <form method="POST" action="{% url 'create-invoice'%}" novalidate="" class='create-invoice'>
+    <form method="POST" action="{% url 'create-invoice'%}" novalidate="" id='create-invoice'>
         <!-- Invoice Form -->
         <div class="form-group row">
             {% csrf_token %}
             <label for="{{inv_form.invoice_number.id_for_label}}"> Invoice Number </label>
-            {{inv_form.invoice_number}}
-            <div class="red">{{inv_form.invoice_number.errors}}</div><!-- Invoice Number -->
+            {{form.invoice_number}}
+            <div class="red">{{form.invoice_number.errors}}</div><!-- Invoice Number -->
         </div>
         <div class="form-group row">
-            <label for="{{inv_form.invoice_description.id_for_label}}"> Invoice Description </label>
-            {{inv_form.invoice_description}}
-            <div class="red">{{inv_form.invoice_description.errors}}</div><!-- Invoice Description -->
+            <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
+            {{form.invoice_description}}
+            <div class="red">{{form.invoice_description.errors}}</div><!-- Invoice Description -->
         </div>
         <div class="form-group row">
-            <label for="{{inv_form.client.id_for_label}}"> Bill To </label>
-            {{inv_form.company}}
-            <div class="red">{{inv_form.company.errors}}</div><!-- Invoice Company -->
+            <label for="{{form.client.id_for_label}}"> Bill To </label>
+            {{form.company}}
+            <div class="red">{{form.company.errors}}</div><!-- Invoice Company -->
         </div>
         <div class="form-group row">
             <label> Payment Status </label>
-            {{inv_form.payment_status}}
-            <div class="red">{{inv_form.payment_status.errors}}</div><!-- Payment Status -->
+            {{form.payment_status}}
+            <div class="red">{{form.payment_status.errors}}</div><!-- Payment Status -->
         </div>
         <div class="row">
             <label> Dates </label>
             <div class ='col'>
-                {{inv_form.invoice_date}}
-                <div class="red">{{inv_form.invoice_date.errors}}</div>
+                {{form.invoice_date}}
+                <div class="red">{{form.invoice_date.errors}}</div>
             </div>
             <label> Due Date </label>
             <div class="col">
-                {{inv_form.due_date}}
-                <div class="red">{{inv_form.due_date.errors}}</div>
+                {{form.due_date}}
+                <div class="red">{{form.due_date.errors}}</div>
             </div><!-- Invoice Dates --><!-- Dates -->
         </div>
       <!--   <div class="form-group row">
@@ -49,9 +49,9 @@
         <div id="myform"></div>
         <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
         <!-- Item Form -->
-        <input type="hidden" name="orders" id="orders">
+        <span type="hidden" name="orders" id="orders"> </span>
 
-        <button id="add-invoice" type="button" class="btn btn-primary" onClick="InvoiceForm.submit()">Create</button>
+        <button id="add-invoice" type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 

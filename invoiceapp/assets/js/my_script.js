@@ -42,33 +42,28 @@ $(document).ready(function() {
         $('#id_total_amount').val(total);
     });
 
-// Add order form button
-$('#add-order').click(function(){
-    var url  = $(this).data('url');
-    $.get(url, function(data, status){
-        console.log(data, 'data0');
-        $('#myform').append(data);
+    // Add order form button
+    $('#add-order').click(function(){
+        var url  = $(this).data('url');
+        $.get(url, function(data, status){
+            console.log(data, 'data0');
+            $('#myform').append(data);
+        });
     });
-});
-});
 
-var InvoiceForm = function(){
     var invoice_number = $('#invoice_number'),
-    invoice_description = $('#invoice_description'),
-    company = $('#company'),
-    payment_status = $('#payment_status'),
-    invoice_date = $('#invoice_date'),
-    due_date = $('#due_date')
+        invoice_description = $('#invoice_description'),
+        company = $('#company'),
+        payment_status = $('#payment_status'),
+        invoice_date = $('#invoice_date'),
+        due_date = $('#due_date'),
+        orders = [];
 
-    var orders = [];
-
-    return {
-        submit: submit,
-    }
-
-    function submit(){
-
-        var invoice_data = $('.create-invoice').serialize();
+    $('#create-invoice').on('submit', function(e){
+        e.preventDefault();
+        console.log('>>>>>>>');
+        var form = $(this);
+        var invoice_data = form.serialize();
         var itemForm = $('.item-form');
 
         itemForm.each(function(index, item){
@@ -79,25 +74,27 @@ var InvoiceForm = function(){
             orders.push(item_data);
         });
 
-        var data = {
-            invoice_data: invoice_data,
-            item_data: orders
-        }
-        console.log(orders, '>>>>>>>>>>>');
-        console.log(data)
-        $('input[name="orders"]').val(orders);
-        var hidden = document.getElementById('#orders');
-        console.log(hidden)
+        // console.log(orders, '>>>>>>>>>>>');
+        $('#orders').val(orders);
+        var data = $(this).serializeArray(); // convert form to array
+        data.push({name: "items", value:  JSON.stringify(orders)});
 
+        // var  data =
+        // console.log(data, '??????????????????');
         $.ajax({
             url: '/create-invoice/',
+            data:  data,
             type: 'POST',
-            data: data,
-            success: function(resp){
-                alert('yey!');
-            },
-            errors: function(resp){
-            }
+            dataType:'json'
+        }).done(function(response){
+        }).fail(function(error){
         });
-    }
-}();
+        // if (form.valid()){
+
+        // };
+    });
+
+
+});
+
+
