@@ -81,7 +81,7 @@ class CreateInvoiceView(InvoiceMixins,TemplateView):
 
     def post(self, *args, **kwargs):
         form = InvoiceForm(self.request.POST)
-        import pdb; pdb.set_trace();
+        import pdb; pdb.set_trace()
         if form.is_valid():
             invoice = form.save()
             items = self.request.POST.get('items')

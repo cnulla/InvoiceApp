@@ -1,12 +1,14 @@
-<form class="item-form">
+<form class="item-form" id="itemform">
     <div class="card border-dark mb-3">
        <div class="card-body text-dark">
+        <!-- Order Number -->
         <div class="form-group row">
             <label> Order Number </label>
             {{itm_form.order_number}}
-            <div class="red">{{itm_form.order_number.errors}}</div><!-- Order Number -->
+            <div class="red">{{itm_form.order_number.errors}}</div>
         </div>
-        <div class="row"><!-- Order Description and Item Type -->
+        <!-- Order Description and Item Type -->
+        <div class="row">
             <div class ='col'>
                 <label>Order Description</label>
                 {{itm_form.order_description}}
@@ -18,7 +20,8 @@
                 <div class="red">{{itm_form.item_type.errors}}</div>
             </div>
         </div>
-        <div class="row"><!-- Duration -->
+        <!-- Duration -->
+        <div class="row">
             <label> Duration </label>
             <div class ='col'>
                 {{itm_form.order_date}}
@@ -30,7 +33,8 @@
                 <div class="red">{{itm_form.end_date.errors}}</div>
             </div>
         </div>
-        <div class="row"><!-- Rate, Hours and Total Amount -->
+        <!-- Rate, Hours and Total Amount -->
+        <div class="row">
             <div class ='col-4'>
                 <label>Rate</label>
                 {{itm_form.rate}}
@@ -47,7 +51,8 @@
                 <div class="red">{{itm_form.total_amount.errors}}</div>
             </div>
         </div>
-        <div class="form-group row"><!-- Remarks -->
+        <!-- Remarks -->
+        <div class="form-group row">
             <label> Remarks(optional) </label>
             {{itm_form.remarks}}
             <div class="red">{{itm_form.remarks.errors}}</div>
