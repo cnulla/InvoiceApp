@@ -85,17 +85,26 @@ class Item(models.Model):
     def total(self):
         return self.rate*self.total_hours
 
+    def __str__(self):
+        return str(self.order_number)
 
 
 class Invoice(models.Model):
     """ User Invoice model
     """
+    FIXED = 'fixed'
+    HOURLY = 'hourly'
+    ORDER_TYPE = (
+                (FIXED, 'Fixed Price'),
+                (HOURLY, 'Hourly')
+        )
     company = models.ForeignKey('Company', on_delete=models.CASCADE, null=True, blank=True)
     invoice_number = models.PositiveIntegerField(null=True, blank=True, unique=True)
     invoice_description = models.TextField(max_length=255)
     invoice_date = models.DateField()
     due_date = models.DateField()
     payment_status = models.BooleanField(default=False)
+    order_type = models.CharField(max_length=10, choices=ORDER_TYPE, default=FIXED)
     is_draft = models.BooleanField(default=False)
     subtotal = models.PositiveIntegerField(null=True, blank=True)
     less = models.PositiveIntegerField(null=True, blank=True)
@@ -105,3 +114,6 @@ class Invoice(models.Model):
 
     def total_invoice(self):
         return self.total-self.less
+
+    def __str__(self):
+        return str(self.invoice_number)
