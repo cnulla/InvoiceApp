@@ -80,16 +80,17 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
                 'invoice_number', 'invoice_description', 'company', 'payment_status',
-                'invoice_date', 'due_date'
+                'invoice_date', 'due_date', 'order_type'
         ]
 
         widgets = {
-                'invoice_number': forms.TextInput(attrs={'class': 'form-control', 'id': 'invoice_number'}),
-                'invoice_description': forms.Textarea(attrs={'class': 'form-control', 'id': 'invoice_description'}),
-                'company': forms.Select(attrs={'class': 'form-control', 'id': 'company'}),
-                'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline', 'id': 'payment_status'}),
-                'invoice_date': DateInput(attrs={'id': 'invoice_date'}),
-                'due_date': DateInput(attrs={'id': 'due_date'}),
+                'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
+                'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
+                'company': forms.Select(attrs={'class': 'form-control'}),
+                'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
+                'invoice_date': DateInput(),
+                'due_date': DateInput(),
+                'order_type': forms.Select(attrs={'class': 'form-control'}),
         }
 
 
@@ -104,7 +105,7 @@ class ItemForm(forms.ModelForm):
         ]
 
         widgets = {
-                'order_number': forms.NumberInput(attrs={'class': 'form-control', 'id': 'order_number'}),
+                'order_number': forms.NumberInput(attrs={'class': 'form-control'}),
                 'order_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'order_date': DateInput(),
                 'end_date': DateInput(),
