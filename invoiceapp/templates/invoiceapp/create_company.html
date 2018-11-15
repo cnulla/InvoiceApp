@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Company {% endblock %}
+
+{% block content %}
+<div class="center">
+<div class="card border-dark mb-3 mymargin">
+    <div class="card-header"> <h3> Create Company </h3> </div>
+        <div class="card-body text-dark">
+        {% if form.errors %}
+        {{form.non_field_errors}}
+        {% endif %}
+        <form method="POST" action="{% url 'create-company' %}" novalidate="">
+            <div class="form-group row">
+                {% csrf_token %}
+                <label for="{{form.company.id_for_label}}"> Company Name </label>
+                {{form.company_name}}
+                <div class="red">{{form.company_name.errors}}</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+       </div>
+    </div>
+</div>
+{% endblock%}

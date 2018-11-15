@@ -91,7 +91,7 @@ class SignInView(TemplateView):
         return render(self.request, self.template_name, {'form': form})
 
 
-class SignOutView(TemplateView):
+class SignOutView(View):
     """ Sign Out User
     """
     def get(self, *args, **kwargs):
