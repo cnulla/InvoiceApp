@@ -5,7 +5,6 @@ $('#myModal').on('shown.bs.modal', function () {
 });
 $(document).ready(function() {
     $(document).on('change', '#id_item_type', function(){
-
         var selected = $(this).val();
         var parent = $(this).closest('.item-form');
         console.log(parent, 'parent');
@@ -38,16 +37,37 @@ $(document).ready(function() {
     $(document).on('keyup', '.total-hours', function() {
         var parent = $(this).closest('.item-form'),
             product = 0,
+            total_amount =0,
             rate = parent.find('.item-rate').val(),
             hours = parent.find('.total-hours').val(),
             product = parseFloat(rate*hours);
         parent.find('.total-amount').val(product);
+        // Get total amount of all item forms
+        $('.total-amount').each(function(){
+            console.log($(this).val());
+            total_amount += parseFloat($(this).val());
+        });
+        $('.sub-total').val(total_amount);
+        $('.invoice-total').val(total_amount);
+        console.log(total_amount, 'total');
     });
-    $(document).on('change', '#id_amount', function(){
-        var amount = $(this).val(),
-            subtotal = $('#id_subtotal').val(amount),
-            total = $('#id_total').val(parseFloat(amount));
-        console.log(total,'total');
+    // Subtotal-less
+    $(document).on('keyup', '.less', function(){
+        var subtotal = $('.sub-total').val(),
+            less = $(this).val(),
+            total = parseFloat(subtotal-less);
+        $('.invoice-total').val(total);
+        console.log(total, 'total');
+    });
+    // Get total amount of all item forms
+    $(document).on('keyup', '.amount', function(){
+        var total_amount = 0;
+        $('.amount').each(function(){
+            total_amount += parseFloat($(this).val());
+          })
+        $('.sub-total').val(total_amount);
+        $('.invoice-total').val(total_amount);
+        console.log(total_amount, 'total');
     });
 
     var orders = [];
@@ -66,15 +86,13 @@ $(document).ready(function() {
             invoice_data = form.serialize(),
             itemForm = $('.item-form');
 
-        if(itemForm.valid()){
-            itemForm.each(function(index, item){
-                console.log(item, 'test');
-                var item_data = {};
-                $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
-                console.log(item_data, "xx");
-                orders.push(item_data);
-            });
-        }
+        itemForm.each(function(index, item){
+            console.log(item, 'test');
+            var item_data = {};
+            $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
+            console.log(item_data, "xx");
+            orders.push(item_data);
+        });
         // put all values of orders in a span
         $('#orders').val(orders);
         console.log(orders);
