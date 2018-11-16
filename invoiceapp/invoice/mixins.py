@@ -1,7 +1,7 @@
 from .models import Item
 
 class InvoiceMixins(object):
-    """ add item
+    """ Add item/order
     """
     def add_item(self, invoice, item):
         item = Item(
@@ -10,5 +10,7 @@ class InvoiceMixins(object):
             amount=item.get('amount'), total_amount=item.get('total_amount'), remarks=item.get('remarks'), item_type=item.get('item_type'),
             )
         item.save()
+
+
 
 
