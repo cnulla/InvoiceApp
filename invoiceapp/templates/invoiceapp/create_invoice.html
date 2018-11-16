@@ -52,6 +52,19 @@
             <label> Order Type </label>
             {{form.order_type}}
         </div>
+        <div class="form-group row">
+            <label> Subtotal </label>
+            {{form.subtotal}}
+        </div>
+        <div class="form-group row">
+            <label> Less </label>
+            {{form.less}}
+        </div>
+        <div class="form-group row">
+            <label> Total </label>
+            {{form.total}}
+        </div>
+
          <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
         <span type="hidden" name="orders" id="orders"> </span>
         <button id="add-invoice" type="submit" class="btn btn-primary">Create</button>
