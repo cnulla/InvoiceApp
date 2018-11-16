@@ -3,11 +3,30 @@
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
 });
-
-
 $(document).ready(function() {
-    // Get the total amount of item type: hourly
+    $(document).on('change', '#id_item_type', function(){
 
+        var selected = $(this).val();
+        var parent = $(this).closest('.item-form');
+        console.log(parent, 'parent');
+        console.log(selected, 'change');
+        if(selected === 'fixed'){
+            var rate = parent.find('.item-rate').attr('disabled', 'disabled'),
+                hours = parent.find('.total-hours').attr('disabled', 'disabled'),
+                amount = parent.find('.total-amount');
+            rate.val('');
+            hours.val('');
+            amount.val('');
+            parent.find('.amount').removeAttr('disabled');
+        }
+        if(selected === 'hourly'){
+            parent.find('.item-rate').removeAttr('disabled');
+            parent.find('.total-hours').removeAttr('disabled');
+            var amount = parent.find('.amount').attr('disabled', 'disabled');
+            amount.val('');
+           parent.find('.total-amount').attr('readonly', 'readonly');
+        }
+    });
     // Add order form button
     $('#add-order').click(function(){
         var url  = $(this).data('url');
@@ -15,12 +34,20 @@ $(document).ready(function() {
             $('#myform').append(data);
         });
     });
-    $(document).on('change', '.item-form', function() {
-        var product = 0,
-            rate = $('#id_rate').val(),
-            hours = $('#id_total_hours').val(),
+    // Get the total amount of item type: hourly
+    $(document).on('keyup', '.total-hours', function() {
+        var parent = $(this).closest('.item-form'),
+            product = 0,
+            rate = parent.find('.item-rate').val(),
+            hours = parent.find('.total-hours').val(),
             product = parseFloat(rate*hours);
-        $('#id_total_amount').val(product);
+        parent.find('.total-amount').val(product);
+    });
+    $(document).on('change', '#id_amount', function(){
+        var amount = $(this).val(),
+            subtotal = $('#id_subtotal').val(amount),
+            total = $('#id_total').val(parseFloat(amount));
+        console.log(total,'total');
     });
 
     var orders = [];
@@ -31,33 +58,26 @@ $(document).ready(function() {
             company: 'required'
         }
     });
-    $('#itemform').validate({
-        rules: {
-            order_number: 'required',
-            order_description: 'required'
-        }
-    });
+    $('#itemform').validate();
     // Submit Form
     $('#create-invoice').on('submit', function(e){
         e.preventDefault();
-        console.log('>>>>>>>');
-        var form = $(this);
-        var invoice_data = form.serialize();
-        var itemForm = $('.item-form');
+        var form = $(this),
+            invoice_data = form.serialize(),
+            itemForm = $('.item-form');
 
-        if(itemForm.valid()) {
+        if(itemForm.valid()){
             itemForm.each(function(index, item){
-            console.log(item, 'test');
-            var item_data = {};
-            $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
-            console.log(item_data, "xx");
-            orders.push(item_data);
-        });
-    }
-
+                console.log(item, 'test');
+                var item_data = {};
+                $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
+                console.log(item_data, "xx");
+                orders.push(item_data);
+            });
+        }
         // put all values of orders in a span
         $('#orders').val(orders);
-
+        console.log(orders);
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
 
@@ -68,11 +88,10 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
-
+                alert(response)
             }).fail(function(error){
             });
         }
+
     });
 });
-
-
