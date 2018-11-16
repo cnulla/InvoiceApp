@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} Invoice Detail {% endblock %}
+
+{% block content %}
+<div> {{invoice.invoice_number}} </div>
+<div> {{invoice.invoice_description}} </div>
+<div> {{invoice.invoice_date}} </div>
+<div> {{invoice.due_date}} </div>
+<div> {{invoice.order_type}} </div>
+<div> {{item.order_description}} </div>
+
+{% endblock %}
