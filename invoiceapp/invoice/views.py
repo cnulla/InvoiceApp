@@ -1,6 +1,12 @@
-from django.shortcuts import render, reverse, redirect
+from django.shortcuts import (
+    render,
+    reverse,
+    redirect,
+    get_object_or_404
+    )
+
 from django.views.generic.base import TemplateView, View
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.db import IntegrityError
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -109,12 +115,40 @@ class ItemFormView(TemplateView):
         return render(self.request, self.template_name, {'itm_form': ItemForm()})
 
 
-class InvoiceView(TemplateView):
-    """ Invoice Details
+class InvoiceListView(TemplateView):
+    """ Invoice List
     """
     template_name = 'invoiceapp/invoice.html'
 
     def get(self, *args, **kwargs):
-        item = Item.objects.all()
-        return render(self.request, self.template_name, {'item':item})
+        invoice = Invoice.objects.all()
+        return render(self.request, self.template_name, {'invoice': invoice})
+
+
+class InvoiceDetailView(TemplateView):
+    """Invoice Detail
+    """
+    template_name = 'invoiceapp/invoice_detail.html'
+    # login decorator
+    def get(self, *args, **kwargs):
+        invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
+        item = invoice.get_items()
+        context = {
+            'invoice': invoice,
+            'item': item
+        }
+        return render(self.request, self.template_name, context)
+
+
+class UpdateInvoiceView(TemplateView):
+    """Update Invoice
+    """
+    template_name = 'invoiceapp/update_invoice.html'
+    def get(self, *args, **kwargs):
+        invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
+        items = invoice.get_items()
+        pass
+
+
+
 
