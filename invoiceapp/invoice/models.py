@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import MyUser
 from uuid import uuid4
 
 # Create your models here.
@@ -89,6 +90,8 @@ class Item(models.Model):
         return str(self.order_number)
 
 
+
+
 class Invoice(models.Model):
     """ User Invoice model
     """
@@ -111,9 +114,13 @@ class Invoice(models.Model):
     total = models.PositiveIntegerField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    invoice_user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.invoice_number)
 
     def total_invoice(self):
         return self.total-self.less
 
-    def __str__(self):
-        return str(self.invoice_number)
+    def get_items(self):
+        return Item.objects.filter(invoice=self)
