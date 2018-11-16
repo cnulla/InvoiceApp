@@ -80,7 +80,7 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
                 'invoice_number', 'invoice_description', 'company', 'payment_status',
-                'invoice_date', 'due_date', 'order_type'
+                'invoice_date', 'due_date', 'order_type', 'subtotal', 'less', 'total'
         ]
 
         widgets = {
@@ -91,6 +91,9 @@ class InvoiceForm(forms.ModelForm):
                 'invoice_date': DateInput(),
                 'due_date': DateInput(),
                 'order_type': forms.Select(attrs={'class': 'form-control'}),
+                'subtotal': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
+                'less': forms.NumberInput(attrs={'class': 'form-control'}),
+                'total': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
         }
 
 
@@ -109,11 +112,11 @@ class ItemForm(forms.ModelForm):
                 'order_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'order_date': DateInput(),
                 'end_date': DateInput(),
-                'amount': forms.NumberInput(attrs={'class': 'form-control'}),
-                'item_type': forms.Select(attrs={'class': 'form-control'}),
-                'rate': forms.NumberInput(attrs={'class': 'form-control'}),
-                'total_hours': forms.NumberInput(attrs={'class': 'form-control'}),
-                'total_amount': forms.TextInput(attrs={'class': 'form-control', 'disabled': 'disabled'}),
+                'amount': forms.NumberInput(attrs={'class': 'form-control amount'}),
+                'item_type': forms.Select(attrs={'class': 'form-control item-type'}),
+                'rate': forms.NumberInput(attrs={'class': 'form-control item-rate', 'disabled': 'disabled'}),
+                'total_hours': forms.NumberInput(attrs={'class': 'form-control total-hours', 'disabled': 'disabled'}),
+                'total_amount': forms.NumberInput(attrs={'class': 'form-control total-amount', 'disabled': 'disabled'}),
                 'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
 
