@@ -5,7 +5,8 @@ from invoice.views import (
     ClientView,
     CreateCompanyView,
     CreateInvoiceView,
-    ItemFormView
+    ItemFormView,
+    InvoiceView,
     )
 
 urlpatterns = [
@@ -15,6 +16,6 @@ urlpatterns = [
     path('create-company/', CreateCompanyView.as_view(), name='create-company'),
     path('create-invoice/', CreateInvoiceView.as_view(), name='create-invoice'),
     path('add/item/', ItemFormView.as_view(), name='item-form'),
-
+    path('invoice/', InvoiceView.as_view(), name='invoice')
 
 ]

@@ -77,7 +77,7 @@ class Item(models.Model):
     total_hours = models.PositiveIntegerField(null=True)
     amount = models.PositiveIntegerField(null=True)
     total_amount = models.PositiveIntegerField(null=True, blank=True)
-    remarks = models.TextField(max_length=255)
+    remarks = models.TextField(max_length=255, null=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)

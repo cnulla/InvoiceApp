@@ -2,7 +2,6 @@ from django.shortcuts import render, reverse, redirect
 from django.views.generic.base import TemplateView, View
 from django.http import HttpResponseRedirect
 from django.db import IntegrityError
-from invoice.models import Invitation, Client
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
@@ -14,6 +13,13 @@ from invoice.forms import (
     CompanyForm,
     InvoiceForm,
     ItemForm,
+    )
+
+from invoice.models import (
+    Invitation,
+    Client,
+    Item,
+    Invoice
     )
 
 from .mixins import InvoiceMixins
@@ -81,7 +87,6 @@ class CreateInvoiceView(InvoiceMixins,TemplateView):
 
     def post(self, *args, **kwargs):
         form = InvoiceForm(self.request.POST)
-        import pdb; pdb.set_trace()
         if form.is_valid():
             invoice = form.save()
             items = self.request.POST.get('items')
@@ -96,7 +101,20 @@ class CreateInvoiceView(InvoiceMixins,TemplateView):
 
 
 class ItemFormView(TemplateView):
+    """Item Form
+    """
     template_name = 'invoiceapp/item_order_form.html'
 
     def get(self, *args, **kwargs):
         return render(self.request, self.template_name, {'itm_form': ItemForm()})
+
+
+class InvoiceView(TemplateView):
+    """ Invoice Details
+    """
+    template_name = 'invoiceapp/invoice.html'
+
+    def get(self, *args, **kwargs):
+        item = Item.objects.all()
+        return render(self.request, self.template_name, {'item':item})
+

@@ -51,14 +51,6 @@ $(document).ready(function() {
         $('.invoice-total').val(total_amount);
         console.log(total_amount, 'total');
     });
-    // Subtotal-less
-    $(document).on('keyup', '.less', function(){
-        var subtotal = $('.sub-total').val(),
-            less = $(this).val(),
-            total = parseFloat(subtotal-less);
-        $('.invoice-total').val(total);
-        console.log(total, 'total');
-    });
     // Get total amount of all item forms
     $(document).on('keyup', '.amount', function(){
         var total_amount = 0;
@@ -69,6 +61,28 @@ $(document).ready(function() {
         $('.invoice-total').val(total_amount);
         console.log(total_amount, 'total');
     });
+    // $(document).on('keyup', '.amount', function(){
+    //     var total_amount = 0,
+    //         amount = $('.amount:not(:disabled)').val(),
+    //         hour_amount = $('.total-hours:disabled');
+    //     console.log(amount, 'total');
+    //     console.log(hour_amount, 'totala');
+    //     $('.amount').each(function(){
+    //         total_amount += parseFloat($(this).val());
+    //       })
+    //     $('.sub-total').val(total_amount);
+    //     $('.invoice-total').val(total_amount);
+
+    // });
+    // Subtotal-less
+    $(document).on('keyup', '.less', function(){
+        var subtotal = $('.sub-total').val(),
+            less = $(this).val(),
+            total = parseFloat(subtotal-less);
+        $('.invoice-total').val(total);
+        console.log(total, 'total');
+    });
+
 
     var orders = [];
     // Validate Form
@@ -86,13 +100,16 @@ $(document).ready(function() {
             invoice_data = form.serialize(),
             itemForm = $('.item-form');
 
-        itemForm.each(function(index, item){
-            console.log(item, 'test');
-            var item_data = {};
-            $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
-            console.log(item_data, "xx");
-            orders.push(item_data);
-        });
+        if($(".item-form").length && itemForm.valid()){
+            itemForm.each(function(index, item){
+                console.log(item, 'test');
+                var item_data = {};
+                $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
+                console.log(item_data, "xx");
+                orders.push(item_data);
+            });
+        }
+
         // put all values of orders in a span
         $('#orders').val(orders);
         console.log(orders);
@@ -106,7 +123,7 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
-                alert(response)
+                document.getElementById('create-invoice').reset();
             }).fail(function(error){
             });
         }
