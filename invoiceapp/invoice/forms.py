@@ -91,9 +91,9 @@ class InvoiceForm(forms.ModelForm):
                 'invoice_date': DateInput(),
                 'due_date': DateInput(),
                 'order_type': forms.Select(attrs={'class': 'form-control'}),
-                'subtotal': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
-                'less': forms.NumberInput(attrs={'class': 'form-control'}),
-                'total': forms.NumberInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
+                'subtotal': forms.NumberInput(attrs={'class': 'form-control sub-total', 'readonly': 'readonly'}),
+                'less': forms.NumberInput(attrs={'class': 'form-control less'}),
+                'total': forms.NumberInput(attrs={'class': 'form-control invoice-total', 'readonly': 'readonly'})
         }
 
 
