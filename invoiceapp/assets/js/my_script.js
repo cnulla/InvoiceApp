@@ -105,6 +105,7 @@ $(document).ready(function(){
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
+            console.log(data,'>>>>>>>data');
             $.ajax({
                 url: form.attr('action'),
                 data:  data,
