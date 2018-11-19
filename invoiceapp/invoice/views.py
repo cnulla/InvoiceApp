@@ -93,6 +93,7 @@ class CreateInvoiceView(InvoiceMixins,TemplateView):
 
     def post(self, *args, **kwargs):
         form = InvoiceForm(self.request.POST)
+        import pdb; pdb.set_trace();
         if form.is_valid():
             invoice = form.save()
             items = self.request.POST.get('items')
@@ -131,6 +132,7 @@ class InvoiceDetailView(TemplateView):
     template_name = 'invoiceapp/invoice_detail.html'
     # login decorator
     def get(self, *args, **kwargs):
+
         invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
         item = invoice.get_items()
         context = {

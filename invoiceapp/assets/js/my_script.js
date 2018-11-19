@@ -13,7 +13,7 @@ $(document).ready(function() {
             rate.val('');
             hours.val('');
             amount.val('');
-            parent.find('.amount').removeAttr('disabled');
+            parent.find('.amount').removeAttr('readonly');
         }
         if(selected === 'hourly'){
             parent.find('.item-rate').removeAttr('disabled');
@@ -34,7 +34,7 @@ $(document).ready(function() {
     $(document).on('keyup', '.total-hours', function() {
         var parent = $(this).closest('.item-form'),
             product = 0,
-            total_amount =0,
+            total_amount = 0,
             rate = parent.find('.item-rate').val(),
             hours = parent.find('.total-hours').val(),
             product = parseFloat(rate*hours);
@@ -68,7 +68,7 @@ $(document).ready(function() {
             if(item.item_type === 'fixed'){
                 amount = item.amount;
             }
-            else if(item.item_type === 'hourly'){
+            if(item.item_type === 'hourly'){
                 amount = item.total_amount;
             }
             totalAmount += parseFloat(amount);
@@ -112,9 +112,7 @@ $(document).ready(function() {
     $('#create-invoice').on('submit', function(e){
         e.preventDefault();
         var form = $(this),
-            invoice_data = form.serialize(),
             itemForm = $('.item-form');
-
         if($(".item-form").length && itemForm.valid()){
            var orders = getItems();
         }
@@ -124,6 +122,7 @@ $(document).ready(function() {
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
+            console.log(data,'>>>>>>>data');
             $.ajax({
                 url: form.attr('action'),
                 data:  data,

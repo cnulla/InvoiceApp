@@ -84,7 +84,7 @@ class InvoiceForm(forms.ModelForm):
         ]
 
         widgets = {
-                'invoice_number': forms.TextInput(attrs={'class': 'form-control'}),
+                'invoice_number': forms.NumberInput(attrs={'class': 'form-control'}),
                 'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'company': forms.Select(attrs={'class': 'form-control'}),
                 'payment_status': forms.CheckboxInput(attrs={'class': 'form-inline'}),
