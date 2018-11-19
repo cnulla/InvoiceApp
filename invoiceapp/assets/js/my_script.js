@@ -1,6 +1,6 @@
 // MyjavaScript
-$(document).ready(function() {
-    $('#myModal').on('shown.bs.modal', function () {
+$(document).ready(function(){
+    $('#myModal').on('shown.bs.modal', function(){
       $('#myInput').trigger('focus')
     });
     $(document).on('change', '#id_item_type', function(){
@@ -20,7 +20,6 @@ $(document).ready(function() {
             parent.find('.total-hours').removeAttr('disabled');
             var amount = parent.find('.amount').attr('readonly', 'readonly');
             amount.val(0);
-           parent.find('.total-amount').attr('readonly', 'readonly');
         }
     });
     // Add order form button
@@ -43,13 +42,13 @@ $(document).ready(function() {
     //Get total invoice
     $(document).on('keyup', '.amount', function(){
         var items = getItems();
-        if(items) {
+        if(items){
             calculateTotalInvoiceAmount(items);
         }
     });
     $(document).on('keyup', '.total-hours', function(){
         var items = getItems();
-        if(items) {
+        if(items){
             calculateTotalInvoiceAmount(items);
         }
     });
