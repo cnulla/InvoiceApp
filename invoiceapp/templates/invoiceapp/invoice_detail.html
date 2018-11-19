@@ -3,28 +3,42 @@
 {% block title %} Invoice Detail {% endblock %}
 
 {% block content %}
+Invoice Number
 <div> {{invoice.invoice_number}} </div>
+Invoice Description
 <div> {{invoice.invoice_description}} </div>
+Date
 <div> {{invoice.invoice_date}} </div>
+Due Date
 <div> {{invoice.due_date}} </div>
+Order Type
 <div> {{invoice.order_type}} </div>
 {% for i in item %}
+Order Number
 <div> {{i.order_number}} </div>
+Order Description
 <div> {{i.order_description}} </div>
+Order Date
 <div> {{i.order_date}} </div>
+End date
 <div> {{i.end_date}} </div>
 
 {% if i.item_type == 'fixed' %}
+Amount
 <div> {{i.amount}} </div>
 {% endif %}
 
 {% if i.item_type == 'hourly' %}
+Rate
 <div> {{i.rate}} </div>
+Total Hours
 <div> {{i.total_hours}} </div>
+Total Amount
 <div> {{i.total_amount}} </div>
 {% endif %}
+Remarks
 <div> {{i.remarks}} </div>
 {% endfor %}
 
-<a href='#'> Update </a>
+<a href="{% url 'update-invoice' invoice.id %}"> Update </a>
 {% endblock %}

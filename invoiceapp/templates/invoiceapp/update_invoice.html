@@ -3,5 +3,102 @@
 {% block title %} Update Invoice {% endblock %}
 
 {% block content %}
+<div class="center">
+    {% if form.errors %}
+    {{form.non_field_errors}}
+    {% endif %}
+    <form method="POST" action="{% url 'update-invoice' invoice.id %}" novalidate="" id='create-invoice'">
+    <!-- Invoice Form -->
+        <!-- Invoice Number -->
+        <div class="form-group row">
+            {% csrf_token %}
+            <label for="{{form.invoice_number.id_for_label}}"> Invoice Number </label>
+            {{form.invoice_number}}
+            <div class="red">{{form.invoice_number.errors}}</div>
+        </div>
+        <!-- Invoice Description -->
+        <div class="form-group row">
+            <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
+            {{form.invoice_description}}
+            <div class="red">{{form.invoice_description.errors}}</div>
+        </div>
+        <!-- Invoice Company -->
+        <div class="form-group row">
+            <label for="{{form.client.id_for_label}}"> Bill To </label>
+            {{form.company}}
+            <div class="red">{{form.company.errors}}</div>
+        </div>
+        <!-- Payment Status -->
+        <div class="form-group row">
+            <label> Payment Status </label>
+            {{form.payment_status}}
+            <div class="red">{{form.payment_status.errors}}</div>
+        </div>
+        <!-- Invoice Dates --><!-- Dates -->
+        <div class="row">
+            <label> Dates </label>
+            <div class ='col'>
+                {{form.invoice_date}}
+                <div class="red">{{form.invoice_date.errors}}</div>
+            </div>
+            <label> Due Date </label>
+            <div class="col">
+                {{form.due_date}}
+                <div class="red">{{form.due_date.errors}}</div>
+            </div>
+        </div>
+        <!-- Order Type -->
+        <div class="form-group row">
+            <label> Order Type </label>
+            {{form.order_type}}
+            {{form.order_type.errors}}
+        </div>
+        <div class="form-group row">
+            <label> Subtotal </label>
+            {{form.subtotal}}
+            {{form.subtotal.errors}}
+        </div>
+        <div class="form-group row">
+            <label> Less </label>
+            {{form.less}}
+            {{form.less.errors}}
+        </div>
+        <div class="form-group row">
+            <label> Total </label>
+            {{form.total}}
+            {{form.total.errors}}
+        </div>
+        {% for i in items %}
+        Order Number
+        <div> {{i.order_number}} </div>
+        Order Description
+        <div> {{i.order_description}} </div>
+        Order Date
+        <div> {{i.order_date}} </div>
+        End date
+        <div> {{i.end_date}} </div>
 
+        {% if i.item_type == 'fixed' %}
+        Amount
+        <div> {{i.amount}} </div>
+        {% endif %}
+
+        {% if i.item_type == 'hourly' %}
+        Rate
+        <div> {{i.rate}} </div>
+        Total Hours
+        <div> {{i.total_hours}} </div>
+        Total Amount
+        <div> {{i.total_amount}} </div>
+        {% endif %}
+        Remarks
+        <div> {{i.remarks}} </div>
+        {% endfor %}
+        <button id="add-invoice" type="submit" class="btn btn-primary">Update</button>
+    </form>
+           <!-- Item Form -->
+        <div id="myform">
+
+        </div>
+</div>
 {% endblock %}
