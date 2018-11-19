@@ -116,6 +116,6 @@ class ItemForm(forms.ModelForm):
                 'item_type': forms.Select(attrs={'class': 'form-control item-type'}),
                 'rate': forms.NumberInput(attrs={'class': 'form-control item-rate', 'disabled': 'disabled'}),
                 'total_hours': forms.NumberInput(attrs={'class': 'form-control total-hours', 'disabled': 'disabled'}),
-                'total_amount': forms.NumberInput(attrs={'class': 'form-control total-amount', 'disabled': 'disabled'}),
+                'total_amount': forms.NumberInput(attrs={'class': 'form-control total-amount', 'readonly': 'readonly'}),
                 'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
