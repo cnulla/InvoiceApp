@@ -145,11 +145,15 @@ class UpdateInvoiceView(TemplateView):
     """Update Invoice
     """
     template_name = 'invoiceapp/update_invoice.html'
+
     def get(self, *args, **kwargs):
         invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
         items = invoice.get_items()
-        pass
-
-
-
+        form = InvoiceForm(instance=invoice)
+        context = {
+            'invoice': invoice,
+            'items': items,
+            'form': form
+        }
+        return render(self.request, self.template_name, context)
 
