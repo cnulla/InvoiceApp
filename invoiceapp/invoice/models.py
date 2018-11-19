@@ -77,7 +77,7 @@ class Item(models.Model):
     rate = models.PositiveIntegerField(null=True)
     total_hours = models.PositiveIntegerField(null=True)
     amount = models.PositiveIntegerField(null=True)
-    total_amount = models.PositiveIntegerField(null=True, blank=True)
+    total_amount = models.PositiveIntegerField(null=True, blank=True, default=0)
     remarks = models.TextField(max_length=255, null=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -88,8 +88,6 @@ class Item(models.Model):
 
     def __str__(self):
         return str(self.order_number)
-
-
 
 
 class Invoice(models.Model):
