@@ -76,7 +76,7 @@ class Item(models.Model):
     end_date = models.DateField()
     rate = models.PositiveIntegerField(null=True)
     total_hours = models.PositiveIntegerField(null=True)
-    amount = models.PositiveIntegerField(null=True)
+    amount = models.PositiveIntegerField(null=True, default=0)
     total_amount = models.PositiveIntegerField(null=True, blank=True, default=0)
     remarks = models.TextField(max_length=255, null=True, blank=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)

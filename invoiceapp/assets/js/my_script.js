@@ -1,5 +1,5 @@
 // MyjavaScript
-$(document).ready(function() {
+$(document).ready(function(){
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     });
@@ -12,14 +12,14 @@ $(document).ready(function() {
                 amount = parent.find('.total-amount');
             rate.val('');
             hours.val('');
-            amount.val('');
+            amount.val(0);
             parent.find('.amount').removeAttr('readonly');
         }
         if(selected === 'hourly'){
             parent.find('.item-rate').removeAttr('disabled');
             parent.find('.total-hours').removeAttr('disabled');
             var amount = parent.find('.amount').attr('readonly', 'readonly');
-            amount.val('');
+            amount.val(0);
            parent.find('.total-amount').attr('readonly', 'readonly');
         }
     });
@@ -74,10 +74,9 @@ $(document).ready(function() {
             totalAmount += parseFloat(amount);
             console.log(item);
         });
-
-        $('.sub-total').val(totalAmount);
-        $('.invoice-total').val(totalAmount);
-        console.log(totalAmount);
+        var sub = $('.sub-total').val(totalAmount),
+            total = $('.invoice-total').val(totalAmount);
+        console.log(total,'>>>total');
     }
     //get items from item form
     function getItems() {
@@ -132,5 +131,11 @@ $(document).ready(function() {
                 $('create-invoice').reset();
             });
         }
+    });
+    // Update Form
+    $('#update-invoice').on('submit', function (e){
+        e.preventDefault();
+        var form = $(this);
+        console.log(form, '>>>>>>>>>>>>>form');
     });
 });

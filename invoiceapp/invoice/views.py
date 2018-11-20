@@ -157,3 +157,11 @@ class UpdateInvoiceView(TemplateView):
         }
         return render(self.request, self.template_name, context)
 
+    def post(self, *args, **kwargs):
+        invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
+        items = invoice.get_items()
+        form = InvoiceForm(instance=invoice)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('dashboard'))
+

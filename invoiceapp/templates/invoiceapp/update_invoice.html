@@ -3,7 +3,7 @@
 {% block title %} Update Invoice {% endblock %}
 
 {% block content %}
-<div class="center">
+<div class="center myfont">
     {% if form.errors %}
     {{form.non_field_errors}}
     {% endif %}
@@ -94,7 +94,7 @@
         Remarks
         <div> {{i.remarks}} </div>
         {% endfor %}
-        <button id="add-invoice" type="submit" class="btn btn-primary">Update</button>
+        <button id="update-invoice" type="submit" class="btn btn-primary">Update</button>
     </form>
            <!-- Item Form -->
         <div id="myform">

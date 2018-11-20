@@ -3,10 +3,17 @@
 {% block title %} Invoice Detail {% endblock %}
 
 {% block content %}
-Invoice Number
-<div> {{invoice.invoice_number}} </div>
-Invoice Description
-<div> {{invoice.invoice_description}} </div>
+<div class="myfont">
+        <div class="toright">
+            Invoice Number
+            <div> {{invoice.invoice_number}} </div>
+        </div>
+<div>
+    Invoice Description
+    <div> {{invoice.invoice_description}} </div>
+</div>
+Bill to
+<div>{{invoice.company}}</div>
 Date
 <div> {{invoice.invoice_date}} </div>
 Due Date
@@ -41,4 +48,5 @@ Remarks
 {% endfor %}
 
 <a href="{% url 'update-invoice' invoice.id %}"> Update </a>
+</div>
 {% endblock %}
