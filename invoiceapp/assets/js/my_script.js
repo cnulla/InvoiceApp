@@ -2,14 +2,14 @@
 $(document).ready(function(){
     $('#myModal').on('shown.bs.modal', function(){
       $('#myInput').trigger('focus')
-    });
+  });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
         var parent = $(this).closest('.item-form');
         if(selected === 'fixed'){
             var rate = parent.find('.item-rate').attr('disabled', 'disabled'),
-                hours = parent.find('.total-hours').attr('disabled', 'disabled'),
-                amount = parent.find('.total-amount');
+            hours = parent.find('.total-hours').attr('disabled', 'disabled'),
+            amount = parent.find('.total-amount');
             rate.val('');
             hours.val('');
             amount.val(0);
@@ -20,6 +20,7 @@ $(document).ready(function(){
             parent.find('.total-hours').removeAttr('disabled');
             var amount = parent.find('.amount').attr('readonly', 'readonly');
             amount.val(0);
+            parent.find('.total-amount').attr('readonly', 'readonly');
         }
     });
     // Add order form button
@@ -65,8 +66,8 @@ $(document).ready(function(){
             }
             totalAmount += parseFloat(amount);
         });
-        var sub = $('.sub-total').val(totalAmount),
-            total = $('.invoice-total').val(totalAmount);
+        $('.sub-total').val(totalAmount);
+        $('.invoice-total').val(totalAmount);
     }
     //get items from item form
     function getItems() {
@@ -81,8 +82,8 @@ $(document).ready(function(){
     }
     $(document).on('keyup', '.less', function(){
         var subtotal = $('.sub-total').val(),
-            less = $(this).val(),
-            total = parseFloat(subtotal-less);
+        less = $(this).val(),
+        total = parseFloat(subtotal-less);
         $('.invoice-total').val(total);
     });
     // Validate Form
@@ -96,10 +97,10 @@ $(document).ready(function(){
     $('#create-invoice').on('submit', function(e){
         e.preventDefault();
         var form = $(this),
-            itemForm = $('.item-form');
+        itemForm = $('.item-form');
         if($(".item-form").length && itemForm.valid()){
            var orders = getItems();
-        }
+       }
         // put all values of orders in a span
         $('#orders').val(orders);
         var data = $(this).serializeArray();
@@ -123,8 +124,8 @@ $(document).ready(function(){
     });
     $('#update-invoice').on('submit', function(){
         var orders = getItems(),
-            form = $('#create-invoice'),
-            data = $(this).serializeArray();
+        form = $('#create-invoice'),
+        data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
         $.ajax({
             url: form.attr('action'),

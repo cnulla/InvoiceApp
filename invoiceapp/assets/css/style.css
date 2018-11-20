@@ -71,6 +71,13 @@ ul {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
 }
+.form-group{
+    width: 100%;
+    margin-bottom: 50px;
+}
+.myfont{
+  font-family: Roboto;
+}
 .toright{
   text-align: right;
   width: 50%;
