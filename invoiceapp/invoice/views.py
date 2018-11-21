@@ -151,7 +151,6 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
         items = invoice.get_items()
         itemList = []
         for item in items:
-            print (item.id)
             itemList.append(ItemForm(instance=item))
         form = InvoiceForm(instance=invoice)
         context = {
@@ -164,7 +163,7 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
     def post(self, *args, **kwargs):
         invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
         items = invoice.get_items()
-        form = InvoiceForm(instance=invoice)
+        form = InvoiceForm(instance=invoice, data=self.request.POST)
         if form.is_valid():
             form.save()
             items = self.request.POST.get('items')
