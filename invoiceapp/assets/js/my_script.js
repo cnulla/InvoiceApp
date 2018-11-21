@@ -106,7 +106,6 @@ $(document).ready(function(){
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
-            console.log(data,'>>>>>>>data');
             $.ajax({
                 url: form.attr('action'),
                 data:  data,
@@ -135,11 +134,9 @@ $(document).ready(function(){
         });
     });
     $('#update-invoice').on('submit', function(){
-        console.log('Form submit');
         var orders = getItems(),
             data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
-        console.log(data,'>>>>>>>>>>>data');
         $.ajax({
             url: form.attr('action'),
             data: data,
