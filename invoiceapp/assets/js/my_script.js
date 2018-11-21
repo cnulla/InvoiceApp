@@ -1,7 +1,7 @@
 // MyjavaScript
-$(document).ready(function(){
-    $('#myModal').on('shown.bs.modal', function () {
-      $('#myInput').trigger('focus')
+$(document).ready(function() {
+    $('#myModal').on('shown.bs.modal', function(){
+        $('#myInput').trigger('focus')
     });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
@@ -38,13 +38,7 @@ $(document).ready(function(){
             rate = parent.find('.item-rate').val(),
             hours = parent.find('.total-hours').val(),
             product = parseFloat(rate*hours);
-        parent.find('.total-amount').val(product);
-        // Get total amount of all item forms
-        $('.total-amount').each(function(){
-            total_amount += parseFloat($(this).val());
-        });
-        $('.sub-total').val(total_amount);
-        $('.invoice-total').val(total_amount);
+        parent.find('.total-amount').val(product);;
     });
     //Get total invoice
     $(document).on('keyup', '.amount', function(){
@@ -84,7 +78,6 @@ $(document).ready(function(){
             $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
             orders.push(item_data);
         });
-        console.log('getItems',orders);
         return orders;
     }
     $(document).on('keyup', '.less', function(){
@@ -110,7 +103,6 @@ $(document).ready(function(){
         }
         // put all values of orders in a span
         $('#orders').val(orders);
-        console.log('orders: ', orders);
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
@@ -131,11 +123,10 @@ $(document).ready(function(){
         form.submit()
     });
     $('#update-invoice').on('submit', function(){
-        console.log('Form submit');
         var orders = getItems(),
+            form = $('#create-invoice'),
             data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
-        console.log(data,'>>>>>>>>>>>data');
         $.ajax({
             url: form.attr('action'),
             data: data,

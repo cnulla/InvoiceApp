@@ -4,18 +4,40 @@
 
 {% block content %}
 <div class="myfont">
-    Invoice Number
-    <div> {{invoice.invoice_number}} </div>
-    Invoice Description
-    <div> {{invoice.invoice_description}} </div>
-    Bill to
-    <div>{{invoice.company}}</div>
-    Payment Status
-    <div> {{invoice.payment_status}} </div>
-    Date
-    <div> {{invoice.invoice_date}} </div>
-    Due Date
-    <div> {{invoice.due_date}} </div>
+    <div class="section1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    Invoice Number
+                    <div class="col-lg-6"> INVOICE NI SIYA{{invoice.invoice_number}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Invoice Description
+                    <div> {{invoice.invoice_description}} </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                Bill to
+                <div>{{invoice.company}}</div>
+                Payment Status
+                <div> {{invoice.payment_status}} </div>
+                Date
+                <div> {{invoice.invoice_date}} </div>
+                Due Date
+                <div> {{invoice.due_date}} </div>
+            </div>
+        </div>
+    </section>
     <div> Order Summary </div>
     Order Type
     <div> {{invoice.order_type}} </div>
