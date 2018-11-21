@@ -2,7 +2,8 @@
 $(document).ready(function(){
     $('#myModal').on('shown.bs.modal', function(){
       $('#myInput').trigger('focus')
-  });
+    });
+$(document).ready(function() {
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
         var parent = $(this).closest('.item-form');
@@ -66,8 +67,8 @@ $(document).ready(function(){
             }
             totalAmount += parseFloat(amount);
         });
-        $('.sub-total').val(totalAmount);
-        $('.invoice-total').val(totalAmount);
+        var sub = $('.sub-total').val(totalAmount),
+            total = $('.invoice-total').val(totalAmount);
     }
     //get items from item form
     function getItems() {

@@ -53,6 +53,10 @@ ul {
   flex-direction: column;
   justify-content: center;
 }
+.form-group{
+    width: 100%;
+    margin-bottom: 50px;
+}
 .form-control{
   border-radius: 0;
   border-color: #E0E0E0;
