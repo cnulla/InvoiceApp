@@ -20,7 +20,7 @@
         <div class="form-group row">
             <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
             {{form.invoice_description}}
-            <div class="red">{{form.invoice_description.errors}}</div>
+            <div  class="red">{{form.invoice_description.errors}}</div>
         </div>
         <!-- Invoice Company -->
         <div class="form-group row">
@@ -69,70 +69,71 @@
             {{form.total.errors}}
         </div>
     </form>
-        {% for i in item_form %}
-         <form class="item-form" id="itemform">
-            <div class="card border-dark mb-3">
-               <div class="card-body text-dark">
-                <div class="form-group row">
-                    <input type="hidden" name="item_id" value="{{i.id}}">
-                    <label> Order Number </label>
-                    {{i.order_number}}
-                    <div class="red">{{i.order_number.errors}}</div>
+    {% for i in item_form %}
+    <form class="item-form" id="itemform">
+        <div class="card border-dark mb-3">
+         <div class="card-body text-dark">
+            <div class="form-group row">
+                <input type="hidden" name="item_id" value="{{i.id}}"/>
+                <label> Order Number </label>
+                {{i.order_number}}
+                <div class="red">{{i.order_number.errors}}</div>
+            </div>
+            <div class="row">
+                <div class ='col'>
+                    <label>Order Description</label>
+                    {{i.order_description}}
+                    <div class="red">{{i.order_description.errors}}</div>
                 </div>
-                <div class="row">
-                    <div class ='col'>
-                        <label>Order Description</label>
-                        {{i.order_description}}
-                        <div class="red">{{i.order_description.errors}}</div>
-                    </div>
-                    <div class="col">
-                        <label>Order Type</label>
-                        {{i.item_type}}
-                        <div class="red">{{i.item_type.errors}}</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <label> Duration </label>
-                    <div class ='col'>
-                        {{i.order_date}}
-                        <div class="red">{{i.order_date.errors}}</div>
-                    </div>
-                    <label> Due Date </label>
-                    <div class="col">
-                        {{i.end_date}}
-                        <div class="red">{{i.end_date.errors}}</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class ='col-4'>
-                        <label>Rate</label>
-                        {{i.rate}}
-                        <div class="red">{{i.rate.errors}}</div>
-                    </div>
-                    <div class="col-4">
-                        <label>Hours</label>
-                        {{i.total_hours}}
-                        <div class="red">{{i.total_hours.errors}}</div>
-                    </div>
-                    <div class="col-4">
-                        <label>Total Amount</label>
-                        {{i.total_amount}}
-                        <div class="red">{{i.total_amount.errors}}</div>
-                    </div>
-                    <div class="col-4">
-                        <label>Amount</label>
-                        {{i.amount}}
-                        <div class="red">{{i.amount.errors}}</div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label> Remarks(optional) </label>
-                    {{i.remarks}}
-                    <div class="red">{{i.remarks.errors}}</div>
+                <div class="col">
+                    <label>Order Type</label>
+                    {{i.item_type}}
+                    <div class="red">{{i.item_type.errors}}</div>
                 </div>
             </div>
-        </form>
-        {% endfor %}
-        <button id="update-button" type="button" class="btn btn-primary">Update</button>
+            <div class="row">
+                <label> Duration </label>
+                <div class ='col'>
+                    {{i.order_date}}
+                    <div class="red">{{i.order_date.errors}}</div>
+                </div>
+                <label> Due Date </label>
+                <div class="col">
+                    {{i.end_date}}
+                    <div class="red">{{i.end_date.errors}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class ='col-4'>
+                    <label>Rate</label>
+                    {{i.rate}}
+                    <div class="red">{{i.rate.errors}}</div>
+                </div>
+                <div class="col-4">
+                    <label>Hours</label>
+                    {{i.total_hours}}
+                    <div class="red">{{i.total_hours.errors}}</div>
+                </div>
+                <div class="col-4">
+                    <label>Total Amount</label>
+                    {{i.total_amount}}
+                    <div class="red">{{i.total_amount.errors}}</div>
+                </div>
+                <div class="col-4">
+                    <label>Amount</label>
+                    {{i.amount}}
+                    <div class="red">{{i.amount.errors}}</div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label> Remarks(optional) </label>
+                {{i.remarks}}
+                <div class="red">{{i.remarks.errors}}</div>
+            </div>
+        </div>
+      </div>
+    </form>
+    {% endfor %}
+    <button id="update-button" type="button" class="btn btn-primary">Update</button>
 </div>
 {% endblock %}

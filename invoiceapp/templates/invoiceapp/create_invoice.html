@@ -8,7 +8,7 @@
     {{form.non_field_errors}}
     {% endif %}
     <form method="POST" action="{% url 'create-invoice'%}" novalidate="" id='create-invoice' class="create-invoice">
-    <!-- Invoice Form -->
+        <!-- Invoice Form -->
         <!-- Invoice Number -->
         <div class="form-group row">
             {% csrf_token %}
@@ -69,14 +69,14 @@
             {{form.total.errors}}
         </div>
 
-         <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
+        <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
         <span type="hidden" name="orders" id="orders"> </span>
-        <button id="add-invoice" type="submit" class="btn btn-primary">Create</button>
     </form>
-           <!-- Item Form -->
-        <div id="myform">
-
-        </div>
+    <!-- Item Form -->
+    <div id="myform">
+    </div>
+    <button id="add-invoice" type="button" class="btn btn-primary">Send</button>
+    <button id="#" type="button" class="btn btn-primary">Save as Draft</button>
 </div>
 
 {% endblock %}

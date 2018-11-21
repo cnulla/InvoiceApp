@@ -99,15 +99,13 @@ $(document).ready(function(){
         $('.invoice-total').val(total);
     });
     // Validate Form
-    var orders = [];
-    $('#create-invoice').validate({
-        rules: {
-            invoice_number: 'required',
-            company: 'required'
-        }
-    });
+    $('#create-invoice').validate();
     $('#itemform').validate();
     // Submit Form
+    $('#add-invoice').on('click', function(){
+        var form = $('#create-invoice');
+        form.submit();
+    });
     $('#create-invoice').on('submit', function(e){
         e.preventDefault();
         var form = $(this),
@@ -134,7 +132,6 @@ $(document).ready(function(){
     });
     // Update Form
     $('#update-button').on('click', function (){
-        console.log('update invoice>>>>>>>>>>>');
         var form = $('#update-invoice');
         form.submit()
     });
