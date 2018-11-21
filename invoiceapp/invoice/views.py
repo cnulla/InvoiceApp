@@ -163,7 +163,6 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
     def post(self, *args, **kwargs):
         invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
         items = invoice.get_items()
-<<<<<<< 1da3518b5705198ec2e5a21f04c32549c27e1ba5
         form = InvoiceForm(instance=invoice, data=self.request.POST)
         if form.is_valid():
             form.save()
@@ -172,10 +171,3 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
             for item in items:
                 self.add_item(form, item)
             return HttpResponseRedirect(reverse('dashboard'))
-=======
-        form = InvoiceForm(instance=invoice)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('dashboard'))
-
->>>>>>> change font, install widget tweaks

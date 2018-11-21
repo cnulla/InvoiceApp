@@ -134,4 +134,17 @@ $(document).ready(function(){
             dataType: 'json'
         });
     });
+    $('#update-invoice').on('submit', function(){
+        console.log('Form submit');
+        var orders = getItems(),
+            data = $(this).serializeArray();
+        data.push({name: 'items', value: JSON.stringify(orders)});
+        console.log(data,'>>>>>>>>>>>data');
+        $.ajax({
+            url: form.attr('action'),
+            data: data,
+            type: 'POST',
+            dataType: 'json'
+        });
+    });
 });
