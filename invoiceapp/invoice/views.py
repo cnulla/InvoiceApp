@@ -141,7 +141,7 @@ class InvoiceDetailView(TemplateView):
         return render(self.request, self.template_name, context)
 
 
-class UpdateInvoiceView(TemplateView):
+class UpdateInvoiceView(InvoiceMixins, TemplateView):
     """Update Invoice
     """
     template_name = 'invoiceapp/update_invoice.html'
@@ -149,11 +149,15 @@ class UpdateInvoiceView(TemplateView):
     def get(self, *args, **kwargs):
         invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
         items = invoice.get_items()
+        itemList = []
+        for item in items:
+            print (item.id)
+            itemList.append(ItemForm(instance=item))
         form = InvoiceForm(instance=invoice)
         context = {
             'invoice': invoice,
-            'items': items,
-            'form': form
+            'form': form,
+            'item_form': itemList
         }
         return render(self.request, self.template_name, context)
 
@@ -163,5 +167,8 @@ class UpdateInvoiceView(TemplateView):
         form = InvoiceForm(instance=invoice)
         if form.is_valid():
             form.save()
+            items = self.request.POST.get('items')
+            items = json.loads(items)
+            for item in items:
+                self.add_item(form, item)
             return HttpResponseRedirect(reverse('dashboard'))
-

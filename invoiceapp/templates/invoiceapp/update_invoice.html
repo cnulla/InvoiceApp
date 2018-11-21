@@ -7,8 +7,8 @@
     {% if form.errors %}
     {{form.non_field_errors}}
     {% endif %}
-    <form method="POST" action="{% url 'update-invoice' invoice.id %}" novalidate="" id='create-invoice'">
-    <!-- Invoice Form -->
+    <form method="POST" action="{% url 'update-invoice' invoice.id %}" novalidate="" id='update-invoice'">
+        <!-- Invoice Form -->
         <!-- Invoice Number -->
         <div class="form-group row">
             {% csrf_token %}
@@ -68,37 +68,71 @@
             {{form.total}}
             {{form.total.errors}}
         </div>
-        {% for i in items %}
-        Order Number
-        <div> {{i.order_number}} </div>
-        Order Description
-        <div> {{i.order_description}} </div>
-        Order Date
-        <div> {{i.order_date}} </div>
-        End date
-        <div> {{i.end_date}} </div>
-
-        {% if i.item_type == 'fixed' %}
-        Amount
-        <div> {{i.amount}} </div>
-        {% endif %}
-
-        {% if i.item_type == 'hourly' %}
-        Rate
-        <div> {{i.rate}} </div>
-        Total Hours
-        <div> {{i.total_hours}} </div>
-        Total Amount
-        <div> {{i.total_amount}} </div>
-        {% endif %}
-        Remarks
-        <div> {{i.remarks}} </div>
-        {% endfor %}
-        <button id="update-invoice" type="submit" class="btn btn-primary">Update</button>
     </form>
-           <!-- Item Form -->
-        <div id="myform">
-
-        </div>
+        {% for i in item_form %}
+         <form class="item-form" id="itemform">
+            <div class="card border-dark mb-3">
+               <div class="card-body text-dark">
+                <div class="form-group row">
+                    <input type="hidden" name="item_id" value="{{i.id}}">
+                    <label> Order Number </label>
+                    {{i.order_number}}
+                    <div class="red">{{i.order_number.errors}}</div>
+                </div>
+                <div class="row">
+                    <div class ='col'>
+                        <label>Order Description</label>
+                        {{i.order_description}}
+                        <div class="red">{{i.order_description.errors}}</div>
+                    </div>
+                    <div class="col">
+                        <label>Order Type</label>
+                        {{i.item_type}}
+                        <div class="red">{{i.item_type.errors}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label> Duration </label>
+                    <div class ='col'>
+                        {{i.order_date}}
+                        <div class="red">{{i.order_date.errors}}</div>
+                    </div>
+                    <label> Due Date </label>
+                    <div class="col">
+                        {{i.end_date}}
+                        <div class="red">{{i.end_date.errors}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class ='col-4'>
+                        <label>Rate</label>
+                        {{i.rate}}
+                        <div class="red">{{i.rate.errors}}</div>
+                    </div>
+                    <div class="col-4">
+                        <label>Hours</label>
+                        {{i.total_hours}}
+                        <div class="red">{{i.total_hours.errors}}</div>
+                    </div>
+                    <div class="col-4">
+                        <label>Total Amount</label>
+                        {{i.total_amount}}
+                        <div class="red">{{i.total_amount.errors}}</div>
+                    </div>
+                    <div class="col-4">
+                        <label>Amount</label>
+                        {{i.amount}}
+                        <div class="red">{{i.amount.errors}}</div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label> Remarks(optional) </label>
+                    {{i.remarks}}
+                    <div class="red">{{i.remarks.errors}}</div>
+                </div>
+            </div>
+        </form>
+        {% endfor %}
+        <button id="update-button" type="button" class="btn btn-primary">Update</button>
 </div>
 {% endblock %}

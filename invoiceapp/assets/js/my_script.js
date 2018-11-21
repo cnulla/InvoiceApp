@@ -133,9 +133,22 @@ $(document).ready(function(){
         }
     });
     // Update Form
-    $('#update-invoice').on('submit', function (e){
-        e.preventDefault();
-        var form = $(this);
-        console.log(form, '>>>>>>>>>>>>>form');
+    $('#update-button').on('click', function (){
+        console.log('update invoice>>>>>>>>>>>');
+        var form = $('#update-invoice');
+        form.submit()
+    });
+    $('#update-invoice').on('submit', function(){
+        console.log('Form submit');
+        var orders = getItems(),
+            data = $(this).serializeArray();
+        data.push({name: 'items', value: JSON.stringify(orders)});
+        console.log(data,'>>>>>>>>>>>data');
+        $.ajax({
+            url: form.attr('action'),
+            data: data,
+            type: 'POST',
+            dataType: 'json'
+        });
     });
 });

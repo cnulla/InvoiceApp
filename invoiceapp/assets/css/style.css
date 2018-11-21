@@ -64,25 +64,30 @@ ul {
 
 .form-control{
   border-radius: 0;
-  border-color: $secondary-color;
+  border-color: #E0E0E0;
   border-width: 0 0 2px 0;
   border-style: none none solid none;
   box-shadow: none;
-  color: $secondary-color;
   font-size: 12px;
   letter-spacing: 2.4px;
   font-family: Roboto;
-  &:focus{
-   box-shadow: none;
-   border-color: $primary-color;
- }
+
 }
 
+  .form-control:focus{
+   box-shadow: none;
+   border-color: #837eee;
+ }
+
 .myfont{
-  font-family: Roboto;
+  font-family: 'Roboto', sans-serif;
 }
 
 .toright{
   text-align: right;
   width: 50%;
+}
+
+.myborder{
+  border: solid;
 }

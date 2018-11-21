@@ -4,49 +4,91 @@
 
 {% block content %}
 <div class="myfont">
-        <div class="toright">
-            Invoice Number
-            <div> {{invoice.invoice_number}} </div>
+    <div class="toright">
+        Invoice Number
+        <div> {{invoice.invoice_number}} </div>
+    </div>
+    <div>
+        Invoice Description
+        <div> {{invoice.invoice_description}} </div>
+    </div>
+    <div class="row border">
+        <div class="col">
+            Bill to
+            <div>{{invoice.company}}</div>
         </div>
-<div>
-    Invoice Description
-    <div> {{invoice.invoice_description}} </div>
+        <div class="col">
+            Payment Status
+            <div> {{invoice.payment_status}} </div>
+        </div>
+        <div class="col">
+            Date
+            <div> {{invoice.invoice_date}} </div>
+        </div>
+        <div class="col">
+            Due Date
+            <div> {{invoice.due_date}} </div>
+        </div>
+    </div>
 </div>
-Bill to
-<div>{{invoice.company}}</div>
-Date
-<div> {{invoice.invoice_date}} </div>
-Due Date
-<div> {{invoice.due_date}} </div>
-Order Type
-<div> {{invoice.order_type}} </div>
-{% for i in item %}
-Order Number
-<div> {{i.order_number}} </div>
-Order Description
-<div> {{i.order_description}} </div>
-Order Date
-<div> {{i.order_date}} </div>
-End date
-<div> {{i.end_date}} </div>
+<div class="border">
+    <div class="row">
+        <div class="col">
+            <div> Order Summary </div>
+        </div>
+        <div class="col">
+            Order Type
+            <div> {{invoice.order_type}} </div>
+        </div>
+    </div>
+    {% for i in item %}
+    <div class="row border">
+        <div class="col">
+            Order Number
+            <div> {{i.order_number}} </div>
+        </div>
+        <div class="col">
+            Order Description
+            <div> {{i.order_description}} </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            Order Date
+            <div> {{i.order_date}} </div>
+        </div>
+        <div class="col">
+            End date
+            <div> {{i.end_date}} </div>
+        </div>
 
-{% if i.item_type == 'fixed' %}
-Amount
-<div> {{i.amount}} </div>
-{% endif %}
-
-{% if i.item_type == 'hourly' %}
-Rate
-<div> {{i.rate}} </div>
-Total Hours
-<div> {{i.total_hours}} </div>
-Total Amount
-<div> {{i.total_amount}} </div>
-{% endif %}
-Remarks
-<div> {{i.remarks}} </div>
-{% endfor %}
-
+        {% if i.item_type == 'fixed' %}
+        <div class="col">
+            Amount
+            <div> {{i.amount}} </div>
+        </div>
+        {% endif %}
+    </div>
+        {% if i.item_type == 'hourly' %}
+    <div class="row">
+        <div class="col">
+            Rate
+            <div> {{i.rate}} </div>
+        </div>
+        <div class="col">
+            Total Hours
+            <div> {{i.total_hours}} </div>
+        </div>
+        <div class="col">
+            Total Amount
+            <div> {{i.total_amount}} </div>
+        </div>
+    </div>
+        {% endif %}
+        Remarks
+        <div> {{i.remarks}} </div>
+        {% endfor %}
+</div>
 <a href="{% url 'update-invoice' invoice.id %}"> Update </a>
 </div>
 {% endblock %}
