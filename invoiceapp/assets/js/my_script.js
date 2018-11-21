@@ -1,14 +1,11 @@
 // MyjavaScript
-// My Modal
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-});
 $(document).ready(function() {
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
         var parent = $(this).closest('.item-form');
-        console.log(parent, 'parent');
-        console.log(selected, 'change');
         if(selected === 'fixed'){
             var rate = parent.find('.item-rate').attr('disabled', 'disabled'),
                 hours = parent.find('.total-hours').attr('disabled', 'disabled'),
@@ -44,12 +41,10 @@ $(document).ready(function() {
         parent.find('.total-amount').val(product);
         // Get total amount of all item forms
         $('.total-amount').each(function(){
-            console.log($(this).val());
             total_amount += parseFloat($(this).val());
         });
         $('.sub-total').val(total_amount);
         $('.invoice-total').val(total_amount);
-        console.log(total_amount, 'total');
     });
     // Get total amount of all item forms
     $(document).on('keyup', '.amount', function(){
@@ -59,33 +54,15 @@ $(document).ready(function() {
           })
         $('.sub-total').val(total_amount);
         $('.invoice-total').val(total_amount);
-        console.log(total_amount, 'total');
     });
-    // $(document).on('keyup', '.amount', function(){
-    //     var total_amount = 0,
-    //         amount = $('.amount:not(:disabled)').val(),
-    //         hour_amount = $('.total-hours:disabled');
-    //     console.log(amount, 'total');
-    //     console.log(hour_amount, 'totala');
-    //     $('.amount').each(function(){
-    //         total_amount += parseFloat($(this).val());
-    //       })
-    //     $('.sub-total').val(total_amount);
-    //     $('.invoice-total').val(total_amount);
-
-    // });
-    // Subtotal-less
     $(document).on('keyup', '.less', function(){
         var subtotal = $('.sub-total').val(),
             less = $(this).val(),
             total = parseFloat(subtotal-less);
         $('.invoice-total').val(total);
-        console.log(total, 'total');
     });
-
-
-    var orders = [];
     // Validate Form
+    var orders = [];
     $('#create-invoice').validate({
         rules: {
             invoice_number: 'required',
@@ -102,20 +79,15 @@ $(document).ready(function() {
 
         if($(".item-form").length && itemForm.valid()){
             itemForm.each(function(index, item){
-                console.log(item, 'test');
                 var item_data = {};
                 $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
-                console.log(item_data, "xx");
                 orders.push(item_data);
             });
         }
-
         // put all values of orders in a span
         $('#orders').val(orders);
-        console.log(orders);
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
-
         if(form.valid()){
             $.ajax({
                 url: form.attr('action'),
@@ -123,10 +95,8 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
-                document.getElementById('create-invoice').reset();
-            }).fail(function(error){
-            });
+                $('create-invoice').reset();
+            })
         }
-
     });
 });

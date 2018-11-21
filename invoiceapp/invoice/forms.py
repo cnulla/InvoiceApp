@@ -119,6 +119,3 @@ class ItemForm(forms.ModelForm):
                 'total_amount': forms.NumberInput(attrs={'class': 'form-control total-amount', 'disabled': 'disabled'}),
                 'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
         }
-
-
-

@@ -10,7 +10,3 @@ class InvoiceMixins(object):
             amount=item.get('amount'), total_amount=item.get('total_amount'), remarks=item.get('remarks'), item_type=item.get('item_type'),
             )
         item.save()
-
-
-
-
