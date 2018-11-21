@@ -3,80 +3,121 @@
 {% block title %} Create Invoice {% endblock %}
 
 {% block content %}
-<div class="create_invoice myfont">
+<div class="myfont rectangle section-margin">
     {% if form.errors %}
     {{form.non_field_errors}}
     {% endif %}
     <form method="POST" action="{% url 'create-invoice'%}" novalidate="" id='create-invoice' class="create-invoice">
         <!-- Invoice Form -->
         <!-- Invoice Number -->
-        <div class="form-group row">
-            {% csrf_token %}
-            <label for="{{form.invoice_number.id_for_label}}"> Invoice Number </label>
-            {{form.invoice_number}}
-            <div class="red">{{form.invoice_number.errors}}</div>
+        <div class="section1">
+            <div class="container">
+                <div class="form-group row">
+                    <div class="col-xl-4 section-align">
+                        {% csrf_token %}
+                        <label for="{{form.invoice_number.id_for_label}}"> Invoice Number </label>
+                        {{form.invoice_number}}
+                        <div class="red">{{form.invoice_number.errors}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Invoice Description -->
-        <div class="form-group row">
-            <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
-            {{form.invoice_description}}
-            <div class="red">{{form.invoice_description.errors}}</div>
+        <div class="section2">
+            <div class="container">
+                <div class="form-group row">
+                    <div class="col-xl-12">
+                        <label for="{{form.invoice_description.id_for_label}}"> Invoice Description </label>
+                        {{form.invoice_description}}
+                        <div class="red">{{form.invoice_description.errors}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Invoice Company -->
-        <div class="form-group row">
-            <label for="{{form.client.id_for_label}}"> Bill To </label>
-            {{form.company}}
-            <div class="red">{{form.company.errors}}</div>
-        </div>
-        <!-- Payment Status -->
-        <div class="form-group row">
-            <label> Payment Status </label>
-            {{form.payment_status}}
-            <div class="red">{{form.payment_status.errors}}</div>
+        <div class="section3">
+            <div class="container">
+                <div class="form-group row">
+                    <div class="col-xl-4">
+                        <label for="{{form.client.id_for_label}}"> Bill To </label>
+                        {{form.company}}
+                        <div class="red">{{form.company.errors}}</div>
+                    </div>
+                    <div class="col-xl-4">
+                        <label> Order Type </label>
+                        {{form.order_type}}
+                        {{form.order_type.errors}}
+                    </div>
+                    <!-- Payment Status -->
+                    <div class="col-xl-4">
+                        <label> Payment Status </label>
+                        {{form.payment_status}}
+                        <div class="red">{{form.payment_status.errors}}</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- Invoice Dates --><!-- Dates -->
-        <div class="row">
-            <label> Dates </label>
-            <div class ='col'>
-                {{form.invoice_date}}
-                <div class="red">{{form.invoice_date.errors}}</div>
+        <div class="section4">
+            <div class="container">
+                <label> Dates </label>
+                <div class="form-group row">
+                    <div class="col-xl-6">
+                        <div>{{form.invoice_date}}</div>
+                        <div class="red">{{form.invoice_date.errors}}</div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div> Due Date: {{form.due_date}} </div>
+                        <div class="red">{{form.due_date.errors}}</div>
+                    </div>
+                </div>
             </div>
-            <label> Due Date </label>
-            <div class="col">
-                {{form.due_date}}
-                <div class="red">{{form.due_date.errors}}</div>
+        </div>
+        <div class="section5 text-right">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <a id="add-order" data-url="{% url 'item-form' %}"> +Add Order</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Order Type -->
-        <div class="form-group row">
-            <label> Order Type </label>
-            {{form.order_type}}
-            {{form.order_type.errors}}
-        </div>
-        <div class="form-group row">
-            <label> Subtotal </label>
-            {{form.subtotal}}
-            {{form.subtotal.errors}}
-        </div>
-        <div class="form-group row">
-            <label> Less </label>
-            {{form.less}}
-            {{form.less.errors}}
-        </div>
-        <div class="form-group row">
-            <label> Total </label>
-            {{form.total}}
-            {{form.total.errors}}
-        </div>
-
-        <button type="button" class="btn btn-primary btn-sm" id="add-order" data-url="{% url 'item-form' %}">Add Order</button>
         <span type="hidden" name="orders" id="orders"> </span>
+        <div class="section7">
+            <div class="container">
+                <div class="form-group row">
+                    <div class="col-xl-4">
+                        <label> Subtotal </label>
+                        {{form.subtotal}}
+                        {{form.subtotal.errors}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-4">
+                        <label> Less </label>
+                        {{form.less}}
+                        {{form.less.errors}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-4">
+                        <label> Total </label>
+                        {{form.total}}
+                        {{form.total.errors}}
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
+    <div id="myform"></div>
     <!-- Item Form -->
-    <div id="myform">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4">
+                <button id="#" type="button" class="round-button2">Save as Draft</button>
+                <button id="add-invoice" type="button" class="round-button">Send</button>
+            </div>
+        </div>
     </div>
-    <button id="add-invoice" type="button" class="btn btn-primary">Send</button>
-    <button id="#" type="button" class="btn btn-primary">Save as Draft</button>
 </div>
-
 {% endblock %}

@@ -3,67 +3,169 @@
 {% block title %} Invoice Detail {% endblock %}
 
 {% block content %}
-<div class="myfont">
+<div class="myfont rectangle">
     <div class="section1">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    Invoice Number
-                    <div class="col-lg-6"> INVOICE NI SIYA{{invoice.invoice_number}} </div>
+                <div class="col-lg-6 section1-sub1">
+                    Invoice
+                </div>
+                <div class="col-lg-6 section1-sub2">
+                    Invoice Number:
+                    <div>{{invoice.invoice_number}}</div>
                 </div>
             </div>
         </div>
     </div>
-    <section>
+    <div class="section2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    Invoice Description
+                    Invoice Description:
                     <div> {{invoice.invoice_description}} </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section>
+    </div>
+    <div class="section3 section-margin">
         <div class="container">
             <div class="row">
-                Bill to
-                <div>{{invoice.company}}</div>
-                Payment Status
-                <div> {{invoice.payment_status}} </div>
-                Date
-                <div> {{invoice.invoice_date}} </div>
-                Due Date
-                <div> {{invoice.due_date}} </div>
+                <div class="col-lg-3">
+                    Bill to:
+                    <div>{{invoice.company}}</div>
+                </div>
+                <div class="col-lg-3">
+                    Payment Status:
+                    <div> {{invoice.payment_status}} </div>
+                </div>
+                <div class="col-lg-3">
+                    Date:
+                    <div> {{invoice.invoice_date}} </div>
+                </div>
+                <div class="col-lg-3">
+                    Due Date:
+                    <div> {{invoice.due_date}} </div>
+                </div>
             </div>
         </div>
-    </section>
-    <div> Order Summary </div>
-    Order Type
-    <div> {{invoice.order_type}} </div>
+    </div>
+    <div class="section4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 section4-sub">
+                    Invoice Orders
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section5 section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    Order Summary
+                </div>
+                <div class="col-lg-6">
+                    Type: {{invoice.order_type}}
+                </div>
+            </div>
+        </div>
+    </div>
     {% for i in item %}
-    <div> {{i.order_number}} </div>
-    Order Description
-    <div> {{i.order_description}} </div>
-    Order Date
-    <div> {{i.order_date}} </div>
-    End date
-    <div> {{i.end_date}} </div>
-    {% if i.item_type == 'fixed' %}
-    Amount
-    <div> {{i.amount}} </div>
-    {% endif %}
-    {% if i.item_type == 'hourly' %}
-    Rate
-    <div> {{i.rate}} </div>
-    Total Hours
-    <div> {{i.total_hours}} </div>
-    Total Amount
-    <div> {{i.total_amount}} </div>
-    {% endif %}
-    Remarks
-    <div> {{i.remarks}} </div>
+    <div class="child">
+        <div class="section6 section-margin">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Order Number:
+                        <div> {{i.order_number}} </div>
+                    </div>
+                    <div class="col-lg-6">
+                        Order Description:
+                        <div> {{i.order_description}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section7 section-margin">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Duration:
+                        <div> {{i.order_date}} - {{i.end_date}}</div>
+                    </div>
+                    {% if i.item_type == 'fixed' %}
+                    <div class="col-lg-6">
+                        Amount:
+                        <div> ${{i.amount}} </div>
+                    </div>
+                    {% endif %}
+                    {% if i.item_type == 'hourly' %}
+                    <div class="col-lg-2">
+                        Rate
+                        <div> ${{i.rate}} </div>
+                    </div>
+                    <div class="col-lg-2">
+                        Total Hours
+                        <div> {{i.total_hours}} </div>
+                    </div>
+                    <div class="col-2">
+                        Total Amount
+                        <div> ${{i.total_amount}} </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="section8 section-margin">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Remarks:
+                        <div> {{i.remarks}} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
-    <a href="{% url 'update-invoice' invoice.id %}"> Update </a>
+    <div class="section9 section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Subtotal:
+                    <div>${{invoice.subtotal}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section10">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Less:
+                    <div>${{invoice.less}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section11">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    Total:
+                    <div>${{invoice.total}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="{% url 'update-invoice' invoice.id %}"><button class="round-button "> Update </button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

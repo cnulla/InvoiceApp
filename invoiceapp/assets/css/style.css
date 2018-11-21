@@ -53,10 +53,6 @@ ul {
   flex-direction: column;
   justify-content: center;
 }
-.form-group{
-    width: 100%;
-    margin-bottom: 50px;
-}
 .form-control{
   border-radius: 0;
   border-color: #E0E0E0;
@@ -67,12 +63,13 @@ ul {
   letter-spacing: 2.4px;
   font-family: 'Roboto', sans-serif;
 }
-  .form-control:focus{
+.form-control:focus{
    box-shadow: none;
    border-color: #837eee;
  }
 .myfont{
   font-family: 'Roboto', sans-serif;
+  font-size: 16px;
 }
 .toright{
   text-align: right;
@@ -81,4 +78,56 @@ ul {
 .myborder{
   border: solid;
   border-color: red;
+}
+.section1-sub1{
+  text-align: left;
+}
+.section1-sub2{
+  text-align: right;
+}
+.section-margin{
+  margin-top: 1%;
+}
+.section4-sub{
+  margin-top: 2%;
+}
+.child{
+  margin-top: 2%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.section12{
+  text-align: center;
+}
+.section-align{
+  text-align: left;
+  align-items: right;
+}
+.rectangle{
+  width: 1440px;
+  height: 810px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+  background-color: #ffffff;
+}
+.text-right{
+  text-align: right;
+  color: #5d58de;
+}
+.round-button{
+  border-radius: 20px;
+  box-shadow: 0 3px 6px 0 rgba(170, 176, 237, 0.28);
+  background-color: #5d58de;
+  width: 121px;
+  height: 40px;
+  color: white;
+  font-size: 13px;
+}
+.round-button2{
+  width: 147px;
+  height: 40px;
+  border-radius: 20px;
+  box-shadow: 0 3px 6px 0 rgba(170, 176, 237, 0.28);
+  background-color: #ffffff;
+  font-size: 13px;
 }

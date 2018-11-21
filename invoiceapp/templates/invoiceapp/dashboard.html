@@ -3,5 +3,20 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
-
+<div class="container-fluid">
+        <table border = "1">
+         <tr>
+            <th>Client</th>
+            <th>Invoice Number</th>
+            <th>Due Date </th>
+            <th>Payment Status </th>
+            <th>Amount</th>
+        </tr>
+        {% for index in client %}
+        <tr>
+            <td>{{index.company}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
