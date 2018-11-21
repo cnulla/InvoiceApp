@@ -22,7 +22,6 @@ class SignUpView(TemplateView):
         form = SignUpForm()
         return render(self.request, self.template_name, {'form': form})
 
-
     def post(self, *args, **kwargs):
         form = SignUpForm(self.request.POST)
         if form.is_valid():
@@ -46,7 +45,6 @@ class SignUpView(TemplateView):
                 }
                 return render(self.request, self.template_name, context)
         return render(self.request, self.template_name,{'form': form})
-
 
 
 class VerifyTokenView(TemplateView):
