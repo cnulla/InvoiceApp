@@ -1,9 +1,8 @@
 // MyjavaScript
-$(document).ready(function(){
-    $('#myModal').on('shown.bs.modal', function(){
-      $('#myInput').trigger('focus')
-    });
 $(document).ready(function() {
+    $('#myModal').on('shown.bs.modal', function(){
+        $('#myInput').trigger('focus')
+    });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
         var parent = $(this).closest('.item-form');
@@ -68,7 +67,7 @@ $(document).ready(function() {
             totalAmount += parseFloat(amount);
         });
         var sub = $('.sub-total').val(totalAmount),
-            total = $('.invoice-total').val(totalAmount);
+        total = $('.invoice-total').val(totalAmount);
     }
     //get items from item form
     function getItems() {
@@ -100,8 +99,8 @@ $(document).ready(function() {
         var form = $(this),
         itemForm = $('.item-form');
         if($(".item-form").length && itemForm.valid()){
-           var orders = getItems();
-       }
+         var orders = getItems();
+     }
         // put all values of orders in a span
         $('#orders').val(orders);
         var data = $(this).serializeArray();
