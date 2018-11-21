@@ -62,7 +62,6 @@ $(document).ready(function(){
     //calculate invoice
     function calculateTotalInvoiceAmount(items) {
         var totalAmount = 0;
-
         $(items).each(function(index, item){
             var amount = 0;
             if(item.item_type === 'fixed'){
@@ -72,21 +71,17 @@ $(document).ready(function(){
                 amount = item.total_amount;
             }
             totalAmount += parseFloat(amount);
-            console.log(item);
         });
         var sub = $('.sub-total').val(totalAmount),
             total = $('.invoice-total').val(totalAmount);
-        console.log(total,'>>>total');
     }
     //get items from item form
     function getItems() {
         itemForm = $('.item-form');
         var orders = [];
         itemForm.each(function(index, item){
-            console.log(item, 'test');
             var item_data = {};
             $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
-            console.log(item_data, "xx");
             orders.push(item_data);
         });
         console.log('getItems',orders);

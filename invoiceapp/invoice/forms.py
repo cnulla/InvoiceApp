@@ -82,7 +82,6 @@ class InvoiceForm(forms.ModelForm):
                 'invoice_number', 'invoice_description', 'company', 'payment_status',
                 'invoice_date', 'due_date', 'order_type', 'subtotal', 'less', 'total'
         ]
-
         widgets = {
                 'invoice_number': forms.NumberInput(attrs={'class': 'form-control'}),
                 'invoice_description': forms.Textarea(attrs={'class': 'form-control'}),

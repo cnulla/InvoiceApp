@@ -53,12 +53,10 @@ ul {
   flex-direction: column;
   justify-content: center;
 }
-
 .form-group{
     width: 100%;
     margin-bottom: 50px;
 }
-
 .form-control{
   border-radius: 0;
   border-color: #E0E0E0;
@@ -68,24 +66,19 @@ ul {
   font-size: 12px;
   letter-spacing: 2.4px;
   font-family: 'Roboto', sans-serif;
-
 }
-
   .form-control:focus{
    box-shadow: none;
    border-color: #837eee;
  }
-
 .myfont{
   font-family: 'Roboto', sans-serif;
   justify-content: center;
 }
-
 .toright{
   text-align: right;
   width: 50%;
 }
-
 .myborder{
   border: solid;
   border-color: red;
