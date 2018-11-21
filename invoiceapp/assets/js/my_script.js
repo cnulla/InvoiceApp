@@ -1,7 +1,7 @@
 // MyjavaScript
 $(document).ready(function() {
-    $('#myModal').on('shown.bs.modal', function(){
-        $('#myInput').trigger('focus')
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
     });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
@@ -106,7 +106,6 @@ $(document).ready(function() {
         var data = $(this).serializeArray();
         data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
-            console.log(data,'>>>>>>>data');
             $.ajax({
                 url: form.attr('action'),
                 data:  data,
