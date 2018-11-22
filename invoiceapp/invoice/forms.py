@@ -99,15 +99,16 @@ class InvoiceForm(forms.ModelForm):
 class ItemForm(forms.ModelForm):
     """ Create item form
     """
+    id = forms.IntegerField(widget = forms.HiddenInput)
     class Meta:
         model = Item
+
         fields = [
             'order_number', 'order_description', 'order_date', 'end_date', 'amount',
             'item_type', 'rate', 'total_hours', 'total_amount', 'remarks', 'id'
         ]
 
         widgets = {
-                'id': forms.TextInput(attrs={'readonly': 'readonly'}),
                 'order_number': forms.NumberInput(attrs={'class': 'form-control'}),
                 'order_description': forms.Textarea(attrs={'class': 'form-control'}),
                 'order_date': DateInput(),

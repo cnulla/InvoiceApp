@@ -99,11 +99,13 @@
             </div>
         </div>
     </form>
+    <!-- Item Form -->
     {% for i in item_form %}
     <form class="item-form" id="itemform">
         <div class="card mb-3">
          <div class="card-body text-dark">
           <!-- Order Number -->
+          {{i.id}} <!-- Hidden Input/Item Id -->
           <div class="section1">
             <div class="container">
                 <div class="form-group row">

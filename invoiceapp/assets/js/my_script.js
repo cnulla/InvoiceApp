@@ -121,10 +121,11 @@ $(document).ready(function() {
         var form = $('#update-invoice');
         form.submit()
     });
-    $('#update-invoice').on('submit', function(){
+    $('#update-invoice').on('submit', function(e){
+        e.preventDefault();
         var orders = getItems(),
-        form = $('#create-invoice'),
-        data = $(this).serializeArray();
+            form = $('#create-invoice'),
+            data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
         $.ajax({
             url: form.attr('action'),
