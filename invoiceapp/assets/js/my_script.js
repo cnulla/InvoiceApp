@@ -100,7 +100,7 @@ $(document).ready(function() {
         itemForm = $('.item-form');
         if($(".item-form").length && itemForm.valid()){
          var orders = getItems();
-     }
+        }
         // put all values of orders in a span
         $('#orders').val(orders);
         var data = $(this).serializeArray();
