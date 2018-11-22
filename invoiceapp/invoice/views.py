@@ -165,9 +165,9 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
         items = invoice.get_items()
         form = InvoiceForm(instance=invoice, data=self.request.POST)
         if form.is_valid():
-            form.save()
+            invoice = form.save()
             items = self.request.POST.get('items')
             items = json.loads(items)
             for item in items:
-                self.add_item(form, item)
+                self.update_item(invoice, item)
             return HttpResponseRedirect(reverse('dashboard'))

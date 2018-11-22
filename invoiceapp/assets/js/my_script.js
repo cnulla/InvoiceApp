@@ -127,6 +127,7 @@ $(document).ready(function() {
             form = $('#create-invoice'),
             data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
+        console.log(orders,'>>>>>>>>data');
         $.ajax({
             url: form.attr('action'),
             data: data,

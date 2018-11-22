@@ -53,10 +53,6 @@ ul {
   flex-direction: column;
   justify-content: center;
 }
-.form-group{
-    width: 100%;
-    margin-bottom: 50px;
-}
 .form-control{
   border-radius: 0;
   border-color: #E0E0E0;
@@ -74,10 +70,6 @@ ul {
 .myfont{
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-}
-.form-group{
-    width: 100%;
-    margin-bottom: 50px;
 }
 .myborder{
   border: solid;
