@@ -73,10 +73,7 @@ ul {
  }
 .myfont{
   font-family: 'Roboto', sans-serif;
-<<<<<<< fd2aeed75a933a698f7801681608805cd1d55bc0
   font-size: 16px;
-=======
->>>>>>> remove comments,spacings and console log in javascript
 }
 .form-group{
     width: 100%;
