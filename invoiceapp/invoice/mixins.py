@@ -3,7 +3,7 @@ from invoice.models import Item
 class InvoiceMixins(object):
 
     def add_item(self, invoice, item):
-         """ Add item/order
+        """ Add item/order
         """
         item = Item(
             invoice=invoice, order_number=item.get('order_number'), order_description=item.get('order_description'),
