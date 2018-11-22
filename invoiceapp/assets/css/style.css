@@ -1,17 +1,17 @@
 .left{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .getbullet{
  list-style: none;
 }
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 .red{
-        color:red;
+  color:red;
 }
 .image{
   height: 100vh;
@@ -20,9 +20,9 @@ ul {
   background-repeat: no-repeat;
 }
 .contain{
-    display: flex;
-    justify-content: space-around;
-    width: 100:;
+  display: flex;
+  justify-content: space-around;
+  width: 100:;
 }
 .automate {
   width: 455px;
@@ -64,8 +64,8 @@ ul {
   font-family: 'Roboto', sans-serif;
 }
 .form-control:focus{
-   box-shadow: none;
-   border-color: #837eee;
+  box-shadow: none;
+  border-color: #837eee;
  }
 .myfont{
   font-family: 'Roboto', sans-serif;
