@@ -3,19 +3,7 @@
 {% block title %} Invoice {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
 {% for item in invoice %}
     <div> <a href="{% url 'invoice-detail' item.id %}"> {{item.invoice_number}} </a> </div>
-=======
-<a href="#"> Update Invoice </a>
-{% for i in item %}
-<div> {{i.order_number}} </div>
-<div> {{i.order_description}} </div>
-<div> {{i.order_date}} </div>
-<div> {{i.end_date}} </div>
-<div> {{i.rate}} </div>
-<div> {{i.invoice.invoice_number}} </div>
-<div> {{i.invoice.company}} </div>
->>>>>>> origin/master
 {% endfor %}
 {% endblock %}
