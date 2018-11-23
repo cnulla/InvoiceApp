@@ -171,3 +171,7 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
             for item in items:
                 self.update_item(invoice, item)
             return HttpResponseRedirect(reverse('dashboard'))
+        context = {
+            'form': form,
+        }
+        return render(self.request, self.template, context)

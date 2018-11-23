@@ -44,9 +44,9 @@ class MyUserManager(BaseUserManager):
 class MyUser(AbstractBaseUser, PermissionsMixin):
     """ Customizing UserAuthentication
     """
-    email = models.EmailField(verbose_name='email_address', max_length=255,unique=True,)
-    first_name = models.CharField(verbose_name='first name',max_length=30,blank=True)
-    last_name = models.CharField(verbose_name='last name',max_length=30,blank=True)
+    email = models.EmailField(max_length=255,unique=True,)
+    first_name = models.CharField(max_length=30,blank=True)
+    last_name = models.CharField(max_length=30,blank=True)
     is_confirmed = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -75,11 +75,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
         return self.first_name
 
     def generate_token(self):
-        from .models import TokenGenerator
         return TokenGenerator.objects.create(user=self)
-
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        send_mail(subject, message, from_email, [self.email], **kwargs)
 
 
 class TokenGenerator(models.Model):

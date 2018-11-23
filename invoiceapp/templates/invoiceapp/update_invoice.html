@@ -7,7 +7,7 @@
     {% if form.errors %}
     {{form.non_field_errors}}
     {% endif %}
-    <form method="POST" action="{% url 'update-invoice' invoice.id %}" novalidate="" id='update-invoice'">
+    <form method="POST" action="{% url 'update-invoice' invoice.id %}" novalidate="" class='update-invoice'">
         <!-- Invoice Form -->
         <!-- Invoice Number -->
         <div class="section1">
@@ -201,7 +201,7 @@
  <div class="container">
         <div class="row">
             <div class="col-xl-4">
-                <button id="update-button" type="button" class="round-button">Update</button>
+                <button id="update-button" type="button" class="round-button ">Update</button>
             </div>
         </div>
     </div>

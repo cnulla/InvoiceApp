@@ -1,4 +1,3 @@
-// MyjavaScript
 $(document).ready(function() {
     $('#myModal').on('shown.bs.modal', function(){
         $('#myInput').trigger('focus')
@@ -121,29 +120,20 @@ $(document).ready(function() {
         var form = $('#update-invoice');
         form.submit()
     });
-    $('#update-invoice').on('submit', function(e){
+    $('.update-invoice').on('submit', function(e){
         e.preventDefault();
         var orders = getItems(),
             form = $('#create-invoice'),
             data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
         console.log(orders,'>>>>>>>>data');
-        $.ajax({
+        if(form.valid()){
+            $.ajax({
             url: form.attr('action'),
             data: data,
             type: 'POST',
             dataType: 'json'
-        });
-    });
-    $('#update-invoice').on('submit', function(){
-        var orders = getItems(),
-            data = $(this).serializeArray();
-        data.push({name: 'items', value: JSON.stringify(orders)});
-        $.ajax({
-            url: form.attr('action'),
-            data: data,
-            type: 'POST',
-            dataType: 'json'
-        });
+            });
+        }
     });
 });
