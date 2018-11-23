@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    $('#myModal').on('shown.bs.modal', function(){
-        $('#myInput').trigger('focus')
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
     });
     $(document).on('change', '#id_item_type', function(){
         var selected = $(this).val();
