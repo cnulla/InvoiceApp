@@ -24,7 +24,6 @@ class ClientForm(forms.ModelForm):
                 'city': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'City'}),
                 'street': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Street'}),
                 'email': forms.EmailInput(attrs={'class': 'form-control'}),
-
         }
 
     def clean_email(self):

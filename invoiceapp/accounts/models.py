@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     )
 from django.utils.translation import ugettext_lazy as _
+# Create your models here.
 
 class MyUserManager(BaseUserManager):
     def _create_user(self, email, password=None, **extra_fields):

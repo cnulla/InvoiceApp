@@ -1,5 +1,4 @@
 from django.db import models
-from accounts.models import MyUser
 from uuid import uuid4
 
 # Create your models here.
@@ -22,7 +21,6 @@ class Client(models.Model):
         return full_name.strip()
 
     def generate_token(self):
-        from invoice.models import Invitation
         return Invitation.objects.create(client=self)
 
     def __str__(self):
@@ -76,9 +74,9 @@ class Item(models.Model):
     end_date = models.DateField()
     rate = models.PositiveIntegerField(null=True)
     total_hours = models.PositiveIntegerField(null=True)
-    amount = models.PositiveIntegerField(null=True, default=0)
-    total_amount = models.PositiveIntegerField(null=True, blank=True, default=0)
-    remarks = models.TextField(max_length=255, null=True, blank=True)
+    amount = models.PositiveIntegerField(null=True)
+    total_amount = models.PositiveIntegerField(null=True, blank=True)
+    remarks = models.TextField(max_length=255, null=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -112,13 +110,9 @@ class Invoice(models.Model):
     total = models.PositiveIntegerField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    invoice_user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True)
-
-    def __str__(self):
-        return str(self.invoice_number)
 
     def total_invoice(self):
         return self.total-self.less
 
-    def get_items(self):
-        return Item.objects.filter(invoice=self)
+    def __str__(self):
+        return "%d".format(self.invoice_number)
