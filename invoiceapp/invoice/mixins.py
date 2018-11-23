@@ -28,6 +28,3 @@ class InvoiceMixins(object):
         item.remarks = data.get('remarks')
         item.item_type = data.get('item_type')
         item.save()
-
-
-
