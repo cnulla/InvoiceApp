@@ -96,7 +96,7 @@ $(document).ready(function() {
     $('#create-invoice').on('submit', function(e){
         e.preventDefault();
         var form = $(this),
-        itemForm = $('.item-form');
+            itemForm = $('.item-form');
         if($(".item-form").length && itemForm.valid()){
          var orders = getItems();
         }
@@ -111,22 +111,25 @@ $(document).ready(function() {
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
-                $('create-invoice').reset();
+                $('create-invoice')[0].reset();
             });
         }
     });
     // Update Form
-    $('#update-button').on('click', function (){
-        var form = $('#update-invoice');
+    $('#update-button').on('click', function(){
+        var form = $('.update-invoice');
         form.submit()
     });
     $('.update-invoice').on('submit', function(e){
         e.preventDefault();
-        var orders = getItems(),
-            form = $('#create-invoice'),
-            data = $(this).serializeArray();
+        var form = $('.update-invoice'),
+            itemform = $('.update-item-form');
+        if(itemform.valid()){
+            var orders = getItems();
+        }
+        $('.update-orders').val(orders);
+        var data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
-        console.log(orders,'>>>>>>>>data');
         if(form.valid()){
             $.ajax({
             url: form.attr('action'),
