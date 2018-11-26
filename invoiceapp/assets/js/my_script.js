@@ -70,9 +70,8 @@ $(document).ready(function() {
     }
     //get items from item form
     function getItems() {
-        itemForm = $('.item-form');
         var orders = [];
-        itemForm.each(function(index, item){
+        $('.item-form').each(function(index, item){
             var item_data = {};
             $(item).serializeArray().map(function(x){item_data[x.name] = x.value;});
             orders.push(item_data);
@@ -102,12 +101,12 @@ $(document).ready(function() {
         }
         // put all values of orders in a span
         $('#orders').val(orders);
-        var data = $(this).serializeArray();
-        data.push({name: "items", value:  JSON.stringify(orders)});
+        var invoice_data = $(this).serializeArray();
+        invoice_data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
             $.ajax({
                 url: form.attr('action'),
-                data:  data,
+                data:  invoice_data,
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
@@ -130,7 +129,7 @@ $(document).ready(function() {
         $('.update-orders').val(orders);
         var data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
-        if(form.valid()){
+        if(form.valid() && itemform.valid()){
             $.ajax({
             url: form.attr('action'),
             data: data,
