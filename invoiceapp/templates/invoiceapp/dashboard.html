@@ -12,9 +12,13 @@
             <th>Payment Status </th>
             <th>Amount</th>
         </tr>
-        {% for index in client %}
+        {% for index in invoice %}
         <tr>
             <td>{{index.company}}</td>
+            <td>{{index.invoice_number}}</td>
+            <td>{{index.due_date}}</td>
+            <td>{{index.payment_status}}</td>
+            <td>{{index.total}}</td>
         </tr>
         {% endfor %}
     </table>

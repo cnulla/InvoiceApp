@@ -98,10 +98,14 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" name="update-orders" class="update-orders">
     </form>
     <!-- Item Form -->
     {% for i in item_form %}
-    <form class="item-form" id="itemform">
+    <form class="update-item-form" id="update-itemform">
+        {% if i.errors %}
+        {{i.non_field_errors}}
+        {% endif %}
         <div class="card mb-3">
          <div class="card-body text-dark">
           <!-- Order Number -->
