@@ -122,7 +122,7 @@ $(document).ready(function() {
     $('.update-invoice').on('submit', function(e){
         e.preventDefault();
         var form = $('.update-invoice'),
-            itemform = $('.update-item-form');
+            itemform = $('.item-form');
         if(itemform.valid()){
             var orders = getItems();
         }
