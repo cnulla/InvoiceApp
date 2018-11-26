@@ -20,9 +20,6 @@ class Client(models.Model):
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
-    def generate_token(self):
-        return Invitation.objects.create(client=self)
-
     def __str__(self):
         return self.first_name
 
@@ -74,8 +71,8 @@ class Item(models.Model):
     end_date = models.DateField()
     rate = models.PositiveIntegerField(null=True)
     total_hours = models.PositiveIntegerField(null=True)
-    amount = models.PositiveIntegerField(null=True)
-    total_amount = models.PositiveIntegerField(null=True, blank=True)
+    amount = models.PositiveIntegerField(null=True, default=0)
+    total_amount = models.PositiveIntegerField(null=True, blank=True, default=0)
     remarks = models.TextField(max_length=255, null=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
@@ -85,7 +82,7 @@ class Item(models.Model):
         return self.rate*self.total_hours
 
     def __str__(self):
-        return "%d".format(self.order_number)
+        return "{}".format(self.order_number)
 
 
 class Invoice(models.Model):
@@ -115,4 +112,7 @@ class Invoice(models.Model):
         return self.total-self.less
 
     def __str__(self):
-        return "%d".format(self.invoice_number)
+        return "{}".format(self.invoice_number)
+
+    def get_items(self):
+        return Item.objects.filter(invoice=self)
