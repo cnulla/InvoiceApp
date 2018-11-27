@@ -109,11 +109,7 @@ $(document).ready(function() {
                 data: data,
                 type: 'POST',
                 dataType:'json'
-            }).done(function(response){
-                alert("Yeyy");
-            }).fail(function(errors){
-                alert('Error');
-            });
+            })
         }
     });
     // Update Form
