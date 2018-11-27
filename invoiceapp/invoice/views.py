@@ -179,3 +179,12 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
             for item in items:
                 self.update_item(invoice, item)
             return HttpResponseRedirect(reverse('dashboard'))
+
+
+class DeleteInvoiceView(View):
+    """Delete Invoice View
+    """
+    def get(self, *args, **kwargs):
+        invoice = get_object_or_404(Invoice, pk=kwargs.get('id'))
+        invoice.delete()
+        return redirect('invoice')
