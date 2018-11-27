@@ -123,11 +123,11 @@ ul {
   border-radius: 20px;
   box-shadow: 0 3px 6px 0 rgba(170, 176, 237, 0.28);
   background-color: #5d58de;
-  width: 121px;
+  width: 147px;
   height: 40px;
   color: white;
   font-size: 13px;
-  padding: 10px 18px;
+  padding: 10px 30px;
 }
 .round-button2{
   width: 147px;
@@ -136,6 +136,7 @@ ul {
   box-shadow: 0 3px 6px 0 rgba(170, 176, 237, 0.28);
   background-color: #ffffff;
   font-size: 13px;
+  padding: 10px 18px;
 }
 a {
   text-decoration: none;
