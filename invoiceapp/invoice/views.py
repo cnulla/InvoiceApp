@@ -6,12 +6,13 @@ from django.shortcuts import (
     )
 
 from django.views.generic.base import TemplateView, View
-from django.http import HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect
 from django.db import IntegrityError
 from django.core.mail import send_mail, EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.core import mail
+from django.contrib.auth.decorators import login_required
 import json
 
 from invoice.forms import (
@@ -25,16 +26,23 @@ from invoice.models import (
     Invitation,
     Client,
     Item,
-    Invoice
+    Invoice,
+    Company
     )
 
 from .mixins import InvoiceMixins
-# Create your views here.
 
 class DashboardView(TemplateView):
     """ User Dashboard
     """
     template_name = 'invoiceapp/dashboard.html'
+
+    def get(self, *args, **kwargs):
+        invoice = Invoice.objects.all()
+        context = {
+            'invoice': invoice
+        }
+        return render(self.request, self.template_name, context)
 
 
 class ClientView(TemplateView):
@@ -171,7 +179,3 @@ class UpdateInvoiceView(InvoiceMixins, TemplateView):
             for item in items:
                 self.update_item(invoice, item)
             return HttpResponseRedirect(reverse('dashboard'))
-        context = {
-            'form': form,
-        }
-        return render(self.request, self.template, context)

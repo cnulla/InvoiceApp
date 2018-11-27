@@ -36,7 +36,11 @@
                 </div>
                 <div class="col-lg-3">
                     Payment Status:
-                    <div> {{invoice.payment_status}} </div>
+                    {% if invoice.payment_status == True %}
+                    <div>  Paid </div>
+                    {% else %}
+                    <div> Pending </div>
+                    {% endif %}
                 </div>
                 <div class="col-lg-3">
                     Date:
@@ -143,7 +147,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     Less:
-                    <div>${{invoice.less}}</div>
+                    {% if invoice.less == None %}
+                    <div>$0</div>
+                    {% else %}
+                    <div> {{invoice.less}} </div>
+                    {% endif %}
                 </div>
             </div>
         </div>

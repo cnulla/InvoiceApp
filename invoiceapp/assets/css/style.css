@@ -106,6 +106,15 @@ ul {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
   background-color: #ffffff;
 }
+.rectangle-client{
+  width: 600px;
+  height: 650px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.6);
+  background-color: #ffffff;
+  margin-left: 35%;
+  margin-top: 5%;
+}
 .text-right{
   text-align: right;
   color: #5d58de;
@@ -143,4 +152,7 @@ a {
   letter-spacing: normal;
   text-align: left;
   color: #222222;
+}
+table{
+  margin-top: 10%;
 }

@@ -79,7 +79,8 @@ class InvoiceForm(forms.ModelForm):
         model = Invoice
         fields = [
                 'invoice_number', 'invoice_description', 'company', 'payment_status',
-                'invoice_date', 'due_date', 'order_type', 'subtotal', 'less', 'total'
+                'invoice_date', 'due_date', 'order_type', 'subtotal', 'less',
+                'total'
         ]
         widgets = {
                 'invoice_number': forms.NumberInput(attrs={'class': 'form-control'}),
@@ -117,5 +118,5 @@ class ItemForm(forms.ModelForm):
                 'rate': forms.NumberInput(attrs={'class': 'form-control item-rate', 'disabled': 'disabled'}),
                 'total_hours': forms.NumberInput(attrs={'class': 'form-control total-hours', 'disabled': 'disabled'}),
                 'total_amount': forms.NumberInput(attrs={'class': 'form-control total-amount', 'readonly': 'readonly'}),
-                'remarks': forms.Textarea(attrs={'class': 'form-control', 'required': False}),
+                'remarks': forms.Textarea(attrs={'class': 'form-control'}),
         }

@@ -98,11 +98,10 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" name="update-orders" class="update-orders">
     </form>
     <!-- Item Form -->
     {% for i in item_form %}
-    <form class="update-item-form" id="update-itemform">
+    <form class="item-form" id="itemform">
         {% if i.errors %}
         {{i.non_field_errors}}
         {% endif %}

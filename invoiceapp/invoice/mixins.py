@@ -27,4 +27,8 @@ class InvoiceMixins(object):
         item.total_amount = data.get('total_amount')
         item.remarks = data.get('remarks')
         item.item_type = data.get('item_type')
-        item.save()
+        item.save(update_fields=[
+            'order_number', 'order_description', 'order_date',
+            'end_date', 'rate', 'total_hours', 'amount',
+            'total_amount', 'remarks', 'item_type'
+            ])

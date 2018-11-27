@@ -1,5 +1,6 @@
 from django.db import models
 from uuid import uuid4
+from accounts.models import MyUser
 
 # Create your models here.
 
@@ -73,7 +74,7 @@ class Item(models.Model):
     total_hours = models.PositiveIntegerField(null=True)
     amount = models.PositiveIntegerField(null=True, default=0)
     total_amount = models.PositiveIntegerField(null=True, blank=True, default=0)
-    remarks = models.TextField(max_length=255, null=True)
+    remarks = models.TextField(max_length=255, null=True, blank=True)
     item_type = models.CharField(max_length=10, choices=ITEM_TYPE, default=FIXED)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)

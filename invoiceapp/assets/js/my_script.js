@@ -101,16 +101,18 @@ $(document).ready(function() {
         }
         // put all values of orders in a span
         $('#orders').val(orders);
-        var invoice_data = $(this).serializeArray();
-        invoice_data.push({name: "items", value:  JSON.stringify(orders)});
+        var data = $(this).serializeArray();
+        data.push({name: "items", value:  JSON.stringify(orders)});
         if(form.valid()){
             $.ajax({
                 url: form.attr('action'),
-                data:  invoice_data,
+                data: data,
                 type: 'POST',
                 dataType:'json'
             }).done(function(response){
-                $('create-invoice')[0].reset();
+                alert("Yeyy");
+            }).fail(function(errors){
+                alert('Error');
             });
         }
     });
@@ -123,19 +125,17 @@ $(document).ready(function() {
         e.preventDefault();
         var form = $('.update-invoice'),
             itemform = $('.item-form');
-        if(itemform.valid()){
-            var orders = getItems();
-        }
+            orders = getItems();
         $('.update-orders').val(orders);
         var data = $(this).serializeArray();
         data.push({name: 'items', value: JSON.stringify(orders)});
-        if(form.valid() && itemform.valid()){
+        if(form.valid()){
             $.ajax({
             url: form.attr('action'),
             data: data,
             type: 'POST',
             dataType: 'json'
-            });
+            })
         }
     });
 });

@@ -3,24 +3,26 @@
 {% block title %} Dashboard {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
-        <table border = "1">
-         <tr>
-            <th>Client</th>
-            <th>Invoice Number</th>
-            <th>Due Date </th>
-            <th>Payment Status </th>
-            <th>Amount</th>
-        </tr>
-        {% for index in invoice %}
-        <tr>
-            <td>{{index.company}}</td>
-            <td>{{index.invoice_number}}</td>
-            <td>{{index.due_date}}</td>
-            <td>{{index.payment_status}}</td>
-            <td>{{index.total}}</td>
-        </tr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Client</th>
+      <th scope="col">Invoice Number</th>
+      <th scope="col">Due Date</th>
+      <th scope="col">Payment Status</th>
+      <th scope="col">Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for index in invoice %}
+    <tr>
+        <td>{{index.company}}</td>
+        <td>{{index.invoice_number}}</td>
+        <td>{{index.due_date}}</td>
+        <td>{{index.payment_status}}</td>
+        <td>${{index.total}}</td>
+    </tr>
         {% endfor %}
-    </table>
-</div>
+  </tbody>
+</table>
 {% endblock %}

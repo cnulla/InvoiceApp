@@ -3,51 +3,63 @@
 {% block title %}Create Client{% endblock %}
 
 {% block content %}
-<div class="center">
-<div class="card border-dark mb-3 mymargin">
-    <div class="card-header"> <h3> Create Client </h3> </div>
-        <div class="card-body text-dark">
+<div class="rectangle-client myfont">
+    <div class="container-fluid">
+    <div class="section12"> Create Client </div>
         {% if form.errors %}
         {{form.non_field_errors}}
         {% endif %}
         <form method="POST" action="{% url 'create-client'%}" novalidate="">
             <div class="form-group row">
-                {% csrf_token %}
-                <label for="{{form.company.id_for_label}}"> Company </label>
-                {{form.company}}
-                <div class="red">{{form.company.errors}}</div>
+                <div class="col-lg-12">
+                    {% csrf_token %}
+                    <label for="{{form.company.id_for_label}}"> Company </label>
+                    {{form.company}}
+                    <div class="red">{{form.company.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="{{form.first_name.id_for_label}}"> First Name </label>
-                {{form.first_name}}
-                <div class="red">{{form.first_name.errors}}</div>
+                <div class="col-lg-12">
+                    <label for="{{form.first_name.id_for_label}}"> First Name </label>
+                    {{form.first_name}}
+                    <div class="red">{{form.first_name.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="{{form.last_name.id_for_label}}"> Last Name </label>
-                {{form.last_name}}
-                <div class="red">{{form.last_name.errors}}</div>
+                <div class="col-lg-12">
+                    <label for="{{form.last_name.id_for_label}}"> Last Name </label>
+                    {{form.last_name}}
+                    <div class="red">{{form.last_name.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="{{form.email.id_for_label}}"> Email </label>
-                {{form.email}}
-                <div class="red">{{form.email.errors}}</div>
+                <div class="col-lg-12">
+                    <label for="{{form.email.id_for_label}}"> Email </label>
+                    {{form.email}}
+                    <div class="red">{{form.email.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                <label for="{{form.password.id_for_label}}"> Address </label>
-                {{form.province}}
-                <div class="red">{{form.province.errors}}</div>
+                <div class="col-lg-12">
+                    <label for="{{form.password.id_for_label}}"> Address </label>
+                    {{form.province}}
+                    <div class="red">{{form.province.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                {{form.city}}
-                <div class="red">{{form.city.errors}}</div>
+                <div class="col-lg-12">
+                    {{form.city}}
+                    <div class="red">{{form.city.errors}}</div>
+                </div>
             </div>
             <div class="form-group row">
-                {{form.street}}
-                <div class="red">{{form.street.errors}}</div>
+                <div class="col-lg-12">
+                    {{form.street}}
+                    <div class="red">{{form.street.errors}}</div>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="round-button">Create</button>
         </form>
-       </div>
     </div>
 </div>
 {% endblock %}
